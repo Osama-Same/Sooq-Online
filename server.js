@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 require("./Connection/connection");
+const path =require("path")
 require("dotenv").config();
 const app = express();
 
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
       }
     });
   });
+  app.use(express.static(path.resolve(__dirname, "client/build")));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
