@@ -27,7 +27,6 @@ const {login} =require("./Controller/login")
 app.post("/login",login)
 
 
-
 app.use(express.static(path.resolve(__dirname, "client/build")));
 
 const PORT = process.env.PORT || 5000;
