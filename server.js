@@ -15,6 +15,7 @@ app.use(express.json());
 // Routre
 app.use(router);
 
+app.use(express.static(path.resolve(__dirname, "Router/Router")));
 app.use(express.static(path.resolve(__dirname, "client/build")));
 
 
