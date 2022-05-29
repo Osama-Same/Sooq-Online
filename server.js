@@ -10,7 +10,7 @@ app.use(cors());
 // express json
 app.use(express.json());
 app.use(express.Router());
-
+app.use(router);
 
 app.use(express.static(path.resolve(__dirname, "client/build")));
 
