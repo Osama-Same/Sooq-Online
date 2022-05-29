@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 // express json
 
-
+// Get All User
 app.get("/", (req, res) => {
   const sql = `select * from users`;
   mysql.query(sql, (err, result) => {
@@ -20,6 +20,8 @@ app.get("/", (req, res) => {
     }
   });
 });
+const {getId} = require("./Controller/getIdUser")
+app.post("/a/:idUser",getId)
 
 app.use(express.static(path.resolve(__dirname, "client/build")));
 
