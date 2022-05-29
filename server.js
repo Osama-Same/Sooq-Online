@@ -8,23 +8,24 @@ const app = express();
 app.use(cors());
 // express json
 
-// Get All User
-app.get("/", (req, res) => {
-  const sql = `select * from users`;
-  mysql.query(sql, (err, result) => {
-    if (err) {
-      res.send({ err: "error" });
-    }
-    if (result) {
-      res.json({ result: result });
-    }
-  });
-});
-const {getId} = require("./Controller/getIdUser")
-app.get("/a/:idUser",getId)
+// Get All Users
+const { allUsers } = require("./Controller/All Users");
+app.get("/", allUsers);
+// Get Id User
+const { getId } = require("./Controller/getIdUser");
+app.get("/a/:idUser", getId);
+
+const {uploadUser} =require("../Upload/user")
+app.post("/register",uploadUser.single("Image") ,register)
+
+
+
+// Login
+const {login} =require("../Controller/login")
+app.post("/login",login)
+
 
 app.use(express.static(path.resolve(__dirname, "client/build")));
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
