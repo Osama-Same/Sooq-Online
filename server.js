@@ -15,14 +15,17 @@ app.get("/", allUsers);
 const { getId } = require("./Controller/getIdUser");
 app.get("/a/:idUser", getId);
 
-const {uploadUser} =require("../Upload/user")
+
+const {register} =require("./Controller/register")
+const {uploadUser} =require("./Upload/user")
 app.post("/register",uploadUser.single("Image") ,register)
 
 
 
 // Login
-const {login} =require("../Controller/login")
+const {login} =require("./Controller/login")
 app.post("/login",login)
+
 
 
 app.use(express.static(path.resolve(__dirname, "client/build")));
