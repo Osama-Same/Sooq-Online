@@ -8,9 +8,19 @@ const app = express();
 // cors
 app.use(cors());
 // express json
-app.use(express.json());
-app.use(express.Router());
-app.use(router);
+
+
+app.get("/", (req, res) => {
+  const sql = `select * from users`;
+  mysql.query(sql, (err, result) => {
+    if (err) {
+      res.send({ err: "error" });
+    }
+    if (result) {
+      res.json({ result: result });
+    }
+  });
+});
 
 app.use(express.static(path.resolve(__dirname, "client/build")));
 
