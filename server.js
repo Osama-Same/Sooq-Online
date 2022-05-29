@@ -18,7 +18,7 @@ app.get("/a/:idUser", getId);
 
 // Register
 const storage = multer.diskStorage({
-  destination:app.use(express.static(path.resolve(__dirname, "./Images/user"))) ,
+  destination:"./Images/user" ,
   filename: (req, file, callback) => {
     callback(null, path.extname(file.originalname));
 },
@@ -33,7 +33,11 @@ const { login } = require("./Controller/login");
 app.post("/login", login);
 
 app.use(express.static("./Images/user"));
-app.use(express.static(path.resolve(__dirname, "client/build")));
 
+
+app.use(express.static(path.resolve(__dirname, "client/build")));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client/public', 'index.html'));
+});
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
