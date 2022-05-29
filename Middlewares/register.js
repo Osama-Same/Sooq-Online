@@ -37,5 +37,8 @@ module.exports = function validate(data) {
     error.Country = "Country field is required";
   }
 
+  /* if (validator.isEmpty(data.Image)) {
+    error.Image = "Image field is required";
+  }  */
   return { error, isValid: isEmpty(error) };
 };

@@ -2,10 +2,9 @@ import React, { useState, useRef } from "react";
 import "./register.css";
 import axios from "axios";
 
-
 import { Link } from "react-router-dom";
 const Register = () => {
-  const [Name, setFirstName] = useState("");
+  const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Passowrd, setPassowrd] = useState("");
   const [Phone, setPhone] = useState("");
@@ -14,7 +13,7 @@ const Register = () => {
   const [errors, setErrors] = useState("");
   const form = useRef(null);
   const handleFirstName = (e) => {
-    setFirstName(e.target.value);
+    setName(e.target.value);
     console.log(e.target.value);
   };
 
@@ -30,7 +29,7 @@ const Register = () => {
   const handleCountry = (e) => {
     setCountry(e.target.value);
   };
-  const handleImage =  (e) => {
+  const handleImage = (e) => {
     console.log(e.target.files[0].name);
     console.log(e.target.files[0]);
     setImage(e.target.files[0]);
@@ -38,15 +37,15 @@ const Register = () => {
 
   const save = async (e) => {
     e.preventDefault();
-     
+
     const fromData = await new FormData();
     fromData.append("Name", Name);
     fromData.append("Email", Email);
     fromData.append("Passowrd", Passowrd);
     fromData.append("Phone", Phone);
     fromData.append("Country", Country);
-    if(Image){
-    fromData.append("Image", Image, Image.name);
+    if (Image) {
+      fromData.append("Image", Image, Image.name);
     }
     const config = {
       headers: { "content-type": "multipart/form-data" },
@@ -54,7 +53,6 @@ const Register = () => {
     axios
       .post("register", fromData, config)
       .then((res) => {
-        console.log(res.data);
         if (res.data) {
           setErrors(res.data);
         } else if (res.data.err) {
@@ -124,11 +122,15 @@ const Register = () => {
         </form>
         <div className="form-text">
           <p>
-            Already have an account ?<Link to="/"> Login</Link>
+            Already have an account ?
+            <Link to="/" style={{ textDecoration: "none" }}>
+              {" "}
+              Login
+            </Link>
           </p>
         </div>
-        <div className="form-group" style={{ color: "red" }}>
-          {errors.Name ||
+        <div className="form-group" style={{ color: "red", textAlign: "center" }}>
+          {errors.FirstName ||
             errors.Email ||
             errors.Passowrd ||
             errors.Phone ||
