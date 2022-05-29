@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   });
 });
 const {getId} = require("./Controller/getIdUser")
-app.post("/a/:idUser",getId)
+app.get("/a/:idUser",getId)
 
 app.use(express.static(path.resolve(__dirname, "client/build")));
 
