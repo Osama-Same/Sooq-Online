@@ -23,24 +23,7 @@ const Login = () => {
       .post("login", { Email: Email, Passowrd: Passowrd })
       .then((res) => {
         
-        if (res.data) {
-          if (res.data.Email || res.data.Passowrd) {
-            console.log(res.data.Email || res.data.Passowrd);
-            setError(res.data);
-          } else if (res.data.result) {
-            const idUser = res.data.idUser;
-            const token = res.data.token;
-            localStorage.setItem("token", token);
-            localStorage.setItem("idUser", idUser);
-            history.push(`/Home/${idUser}`)
-            
-            setError(res.data);
-            console.log(res.data.result);
-          } else if (res.data.err) {
-            setError(res.data);
-            console.log(res.data.err);
-          }
-        }
+       
       })
       .catch((err) => {
         console.log(err);
@@ -78,8 +61,6 @@ const Login = () => {
             (error.Passowrd && (
               <div>
                 <p>{error.err}</p>
-                <p>{error.Email}</p>
-                <p>{error.Passowrd}</p>
                 <p>{error.result}</p>
               </div>
             ))}

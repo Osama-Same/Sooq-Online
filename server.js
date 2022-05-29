@@ -26,7 +26,8 @@ app.post("/register",uploadUser.single("Image") ,register)
 const {login} =require("./Controller/login")
 app.post("/login",login)
 
-
+app.use(express.static("./Images/user"))
+app.use(express.static("./Images/post"))
 app.use(express.static(path.resolve(__dirname, "client/build")));
 
 const PORT = process.env.PORT || 5000;

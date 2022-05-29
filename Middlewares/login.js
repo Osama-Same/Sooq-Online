@@ -1,27 +1,30 @@
-const Validator = require("validator");
+const validator = require("validator");
 const isEmpty = require("is-empty");
-module.exports = function validateLoginInput(data) {
-  let errors = {};
-// Convert empty fields to an empty string so we can use validator functions
+
+module.exports = function validate(data) {
+  
   data.Email = !isEmpty(data.Email) ? data.Email : "";
   data.Passowrd = !isEmpty(data.Passowrd) ? data.Passowrd : "";
+
+  let error = {};
  
-// Email checks
-  if (Validator.isEmpty(data.Email)) {
-    errors.Email = "Email field is required";
-  } else if (!Validator.isEmail(data.Email)) {
-    errors.Email = "Email is invalid";
+
+  // Email checks
+  if (validator.isEmpty(data.Email)) {
+    error.Email = "Email field is required";
   }
-// Password checks
-  if (Validator.isEmpty(data.Passowrd)) {
-    errors.Passowrd = "Password field is required";
+  if (!validator.isEmail(data.Email)) {
+    error.Email = "Email is invalid";
   }
 
-if (!Validator.isLength(data.Passowrd, { min: 4, max: 30 })) {
-    errors.Passowrd = "Password must be at least 6 characters";
+  // Password checks
+
+  if (validator.isEmpty(data.Passowrd)) {
+    error.Passowrd = "Passowrd field is required";
   }
-return {
-    errors,
-    isValid: isEmpty(errors)
-  };
+  if (!validator.isLength(data.Passowrd, { min: 4, max: 30 })) {
+    error.Passowrd = "Password must be at least 6 characters";
+  }
+
+  return { error, isValid: isEmpty(error) };
 };
