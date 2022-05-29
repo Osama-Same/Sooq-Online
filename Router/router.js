@@ -10,7 +10,7 @@ const {uploadUser} =require("../Upload/user")
 
 const router = express.Router();
 // router Users
-router.get("/GetUsers",allUsers)
+router.get("/",allUsers)
 router.get("/GetIdUser/:idUser",getId)
 router.post("/login",login)
 router.post("/register",uploadUser.single("Image") ,register)
