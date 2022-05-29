@@ -5,7 +5,7 @@ import axios from "axios";
 
 import { Link } from "react-router-dom";
 const Register = () => {
-  const [FirstName, setFirstName] = useState("");
+  const [Name, setFirstName] = useState("");
   const [Email, setEmail] = useState("");
   const [Passowrd, setPassowrd] = useState("");
   const [Phone, setPhone] = useState("");
@@ -40,7 +40,7 @@ const Register = () => {
     e.preventDefault();
      
     const fromData = await new FormData();
-    fromData.append("FirstName", FirstName);
+    fromData.append("Name", Name);
     fromData.append("Email", Email);
     fromData.append("Passowrd", Passowrd);
     fromData.append("Phone", Phone);
@@ -78,7 +78,7 @@ const Register = () => {
         </div>
         <form ref={form} onSubmit={save}>
           <div className="form-group">
-            <input type="text" className="form-control item" name="FirstName" placeholder="First Name..." onChange={handleFirstName} />
+            <input type="text" className="form-control item" name="Name" placeholder="Name..." onChange={handleFirstName} />
           </div>
 
           <div className="form-group">
@@ -128,7 +128,7 @@ const Register = () => {
           </p>
         </div>
         <div className="form-group" style={{ color: "red" }}>
-          {errors.FirstName ||
+          {errors.Name ||
             errors.Email ||
             errors.Passowrd ||
             errors.Phone ||
