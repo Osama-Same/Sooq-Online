@@ -18,11 +18,13 @@ app.get("/a/:idUser", getId);
 
 // Register
 const storage = multer.diskStorage({
-  destination: path.join(__dirname, `./Images/user`),
-  //destination: "../../frontend/src/images",
-  filename: (req, file, callback) => {
-    callback(null, file.originalname);
+  destination: (req, file, callback) => {
+    callback(null,path.join("./Images/user"));
   },
+  filename: (req, file, callback) => {
+    const fileName = `${Date.now()}_${file.originalname.replace(/\s+/g, '-')}`;
+    callback(null, fileName);
+},
 });
 const uploadUser = multer({ storage: storage });
 const { register } = require("./Controller/register");
