@@ -13,6 +13,9 @@ app.use(express.json())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
+
 // Get All Users
 const { allUsers } = require("./Controller/All Users");
 app.get("/", allUsers);
