@@ -1,7 +1,12 @@
 const connection = require("../Connection/connection");
 const bcrypt = require("bcrypt");
 const isEmpty = require("is-empty");
-const register = (req, res) => {
+const cloudinary =require("../Upload/cloudinary/cloudinary")
+const upload  =require("../Upload/user")
+
+
+const register =async (req, res) => {
+const img = await cloudinary.uploader.upload(req.file.path)
   let Name = req.body.Name;
   let Email = req.body.Email;
   let Passowrd = req.body.Passowrd;
@@ -29,12 +34,13 @@ const register = (req, res) => {
   if (isEmpty(Country)) {
     error.Country = "Country field is required";
   }
-  let Image = req.file;
+/*   let Image = req.file;
   if (isEmpty(Image)) {
     error.Image = "Image field is required";
   } else {
     Image = req.file.filename;
-  }
+  } */
+  let Image = img.url
   const sql = `INSERT INTO users (Name, Email, Passowrd,Phone,Country,Image)
   VALUES ('${Name}', '${Email}', '${Passowrd}','${Phone}','${Country}','${Image}')`;
   Passowrd = bcrypt.hashSync(Passowrd, Number("salt"));
@@ -48,6 +54,7 @@ const register = (req, res) => {
       console.log(req.file);
     }
   });
+
 };
 
 module.exports = { register };
