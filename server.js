@@ -21,7 +21,7 @@ const { allUsers } = require("./Controller/All Users");
 app.get("/", allUsers);
 // Get Id User
 const { getId } = require("./Controller/getIdUser");
-app.get("/a/:idUser", getId);
+app.get("/getId/:idUser", getId);
 
 // Register
 const {uploadUser}  =require("./Upload/user")

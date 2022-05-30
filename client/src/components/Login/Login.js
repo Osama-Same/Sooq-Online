@@ -61,7 +61,7 @@ const Login = () => {
         </div>
         <div className="form-group">
           <button type="submit" className="btn btn-block create-account" onClick={save}>
-            Register
+            Login
           </button>
         </div>
         <div className="form-text">
