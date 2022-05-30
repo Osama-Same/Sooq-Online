@@ -22,7 +22,22 @@ const Login = () => {
     axios
       .post("login", { Email: Email, Passowrd: Passowrd })
       .then((res) => {
-        
+        if (res.data.Email || res.data.Passowrd) {
+          console.log(res.data.Email || res.data.Passowrd);
+          setError(res.data);
+        } else if (res.data.result) {
+          const idUser = res.data.idUser;
+          const token = res.data.token;
+          localStorage.setItem("token", token);
+          localStorage.setItem("idUser", idUser);
+          history.push(`/Home/${idUser}`)
+          
+          setError(res.data);
+          console.log(res.data.result);
+        } else if (res.data.err) {
+          setError(res.data);
+          console.log(res.data.err);
+        }
        
       })
       .catch((err) => {
@@ -51,10 +66,10 @@ const Login = () => {
         </div>
         <div className="form-text">
           <p>
-            Already have an account ?<Link to="/register"> Register</Link>
+            Already have an account ?<Link to="/register"style={{ textDecoration: "none" }}> Register</Link>
           </p>
         </div>
-        <div className="form-text" style={{ color: "red" }}>
+        <div className="form-text" style={{ color: "red" , textAlign: "center"}}>
           {error.result ||
             error.Email ||
             error.err ||

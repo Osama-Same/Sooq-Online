@@ -1,10 +1,13 @@
 const connection = require("../Connection/connection");
-const validator = require("../Middlewares/login");
+const validate = require("../Middlewares/login");
 const jwt = require("jsonwebtoken");
 
 
 const login = (req, res) => {
-  
+  const { error, isValid } = validate(req.body);
+  if (!isValid) {
+    return res.json(error);
+  }
     let Email = req.body.Email;
     let Passowrd = req.body.Passowrd;
     const sql = `select * from users where Email ='${Email}' and Passowrd = '${Passowrd}' `;
@@ -12,13 +15,14 @@ const login = (req, res) => {
     connection.query(sql, (err, result) => {
       if (err) {
         res.json({ err: "You have entered invalid Email or password" });
+        console.log(err)
       }
       if (result) {
         if (result.length > 0) {
           const idUser = result[0].idUser;
           const token = jwt.sign({ idUser }, "jwtSecret", { expiresIn: process.env.TOKEN_EXPIRATION });
-          res.json({ result: "User registered sucessfully" });
-  
+          res.json({ result: "User registered sucessfully",token:token ,idUser:idUser});
+          console.log(result)
         } else {
           res.json({ err: "You have entered invalid Email or password" });
         }

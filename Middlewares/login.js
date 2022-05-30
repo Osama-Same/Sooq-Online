@@ -16,6 +16,7 @@ module.exports = function validate(data) {
   if (!validator.isEmail(data.Email)) {
     error.Email = "Email is invalid";
   }
+  
 
   // Password checks
 
