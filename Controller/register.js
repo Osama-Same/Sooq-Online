@@ -8,13 +8,13 @@ const register = async (req, res) => {
   if (!isValid) {
     return res.json(error);
   }
-  const img = await cloudinary.uploader.upload(req.file.path);
+  
+  const img = await cloudinary.uploader.upload(req.file.path, { folder: "Sooq Online/Users/"});
   let Name = req.body.Name;
   let Email = req.body.Email;
   let Passowrd = req.body.Passowrd;
   let Phone = req.body.Phone;
   let Country = req.body.Country;
-
   let Image = img.url;
 
   const sql = `INSERT INTO users (Name, Email, Passowrd,Phone,Country,Image)

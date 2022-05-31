@@ -77,6 +77,8 @@ const Login = () => {
               <div>
                 <p>{error.err}</p>
                 <p>{error.result}</p>
+                <p>{error.Passowrd}</p>
+                <p>{error.Email}</p>
               </div>
             ))}
         </div>

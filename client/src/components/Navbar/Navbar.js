@@ -22,7 +22,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       {users && (
         <div className="container-fluid">
-          <Link className="navbar-brand" to="#">
+          <Link className="navbar-brand" to={`/Home/${users[0].idUser}`}>
             Sooq Online
           </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,15 +36,11 @@ const Navbar = () => {
                 </Link>
               </li>
 
-              <li>
-                <Link className="nav-link active" aria-current="page" to={`/GetUsers`}>
-                  Get Users
-                </Link>
-              </li>
+            
             </ul>
             <ul class="nav navbar-nav ml-auto">
               <li>
-              <Link className="nav-link active" >Add Post</Link>
+              <Link className="nav-link" to={`/AddPost/${users[0].idUser}`}>Add Post</Link>
               </li>
               <li className="nav-item dropdown">
                 

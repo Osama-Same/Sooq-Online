@@ -29,8 +29,14 @@ app.post("/register", uploadUser.single("Image"), register);
 const { login } = require("./Controller/login");
 app.post("/login", login);
 
+// Add Post
 
+const {addPost} = require("./Controller/AddPost")
+app.post("/AddPost/:idUser",uploadUser.single("Images_Post"),addPost)
 
+// Get All AllPost
+const { allPost } = require("./Controller/All Post");
+app.get("/AllPost", allPost);
 
 app.use(express.static(path.resolve(__dirname, "client/build")));
 
