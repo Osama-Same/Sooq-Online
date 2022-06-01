@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link ,useHistory} from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import axios from "axios";
 
 const Navbar = () => {
   const [users, setUser] = useState(null);
-  let history = useHistory();
+  //let history = useHistory();
   useEffect(() => {
     getId();
   }, []);
@@ -14,9 +15,9 @@ const Navbar = () => {
       setUser(res.data);
     });
   };
-  const profile = () =>{
+/*   const profile = () =>{
     return history.push(`/Profile/${users[0].idUser}`)
-  }
+  } */
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -38,7 +39,7 @@ const Navbar = () => {
 
             
             </ul>
-            <ul class="nav navbar-nav ml-auto">
+            <ul className="nav navbar-nav ml-auto">
               <li>
               <Link className="nav-link" to={`/AddPost/${users[0].idUser}`}>Add Post</Link>
               </li>
@@ -51,9 +52,9 @@ const Navbar = () => {
 
                 <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                   <li>
-                    <button className="dropdown-item" onClick={profile}>
+                    {/* <button className="dropdown-item" onClick={profile}>
                       Profile
-                    </button>
+                    </button> */}
                   </li>
                 </ul>
               </li>

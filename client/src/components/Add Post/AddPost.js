@@ -66,8 +66,8 @@ const AddPost = () => {
   return (
     <div className="registration-form">
       <section>
-        <div className="form-icon">
-          <span>Add Post</span>
+        <div className="form-text">
+          <p style={{fontSize:"25px"}}>Add Post</p>
         </div>
         <div className="form-text">
           <p>Fill out the form below to Add Post</p>
