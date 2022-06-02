@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import "./home.css";
 const Home = () => {
   const [post, setPost] = useState([]);
   useEffect(() => {
@@ -14,24 +14,42 @@ const Home = () => {
   };
   const data = post.map((e, i) => {
     return (
-      <div className="col-md-3">
-        <figure className="card card-product-grid card-lg" style={{ width: "100%" }}>
-          <div class="card-header">
-            <img src={e.Image} width="35" height="25" className="rounded-circle" />
-            <small style={{ paddingLeft: "5px" }}> {e.Name}</small>
-            <small className="float-right">{e.Date_Post}</small>
-          </div>
-          <img className="card-img-top" src={e.Images_Post} alt="Card image cap" height="150" />
-          <div class="card">
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                {e.Category_Post}
+      <div className="col-md-4">
+        <figure className="card card-product-grid card-lg">
+          <span>
+            <img src={e.Image} width="40" height="35" className="rounded-circle"  />
+            <Link className="badge bg-primary text-white" style={{padding:"5px"}} >{e.Name}</Link>
+          </span>
+          <Link to="#" className="img-wrap" data-abc="true">
+            <img src={e.Images_Post} />
+          </Link>
+          <div className="bottom-wrap">
+            <ul className="float-right" style={{ listStyleType: "none" }}>
+              <li>
+                {" "}
+                Date : <small className="badge bg-warning text-black">{e.Date_Post}</small>
               </li>
-              <li class="list-inline-item" style={{ border: "none" }}>
-                Dapibus ac facilisis in
+              <li>
+                Category : <Link className="badge bg-primary text-white"> {e.Category_Post}</Link>
               </li>
-              <li class="list-group-item">Vestibulum at eros</li>
             </ul>
+            <ul className="float-left" style={{ listStyleType: "none", padding: "0px" }}>
+              <li>
+                Name : <small className="badge bg-secondary text-white">{e.Name_Post}</small>
+              </li>
+              <li>
+                Country : <small className="badge bg-success text-white">{e.Country_Post}</small>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bottom-wrap">
+            <a href="#" class="btn  btn-primary float-right" data-abc="true">
+              View Prodect
+            </a>
+            <div class="price-wrap">
+              <span class="price h5">${e.Price_Post}</span> <br /> <small class="text-success">Free shipping</small>
+            </div>
           </div>
         </figure>
       </div>
