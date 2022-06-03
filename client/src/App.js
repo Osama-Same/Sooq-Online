@@ -6,6 +6,7 @@ import Register from "./components/Register/register";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import AddPost from "./components/Add Post/AddPost";
+import ViewProdect from "./components/View Prodect/Prodect";
 // functional component
 const App = () => {
   return (
@@ -24,8 +25,12 @@ const App = () => {
           <Home />
         </Route>
         <Route exact path="/AddPost/:idUser">
-      <Navbar/>
-<AddPost/>
+          <Navbar />
+          <AddPost />
+        </Route>
+        <Route exact path="/ViewProdect/:idPost">
+          <Navbar />
+          <ViewProdect />
         </Route>
       </Switch>
     </Router>

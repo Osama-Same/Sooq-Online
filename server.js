@@ -38,6 +38,10 @@ app.post("/AddPost/:idUser",uploadUser.single("Images_Post"),addPost)
 const { allPost } = require("./Controller/All Post");
 app.get("/AllPost", allPost);
 
+// Get id Post viewProdect
+const { viewProdect } = require("./Controller/ViewProdect");
+app.get("/ViewProdect/:idPost", viewProdect);
+
 app.use(express.static(path.resolve(__dirname, "client/build")));
 
 const PORT = process.env.PORT || 5000;

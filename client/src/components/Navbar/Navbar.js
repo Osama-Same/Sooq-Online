@@ -13,6 +13,7 @@ const Navbar = () => {
     const id = localStorage.getItem("idUser");
     axios.get(`getId/${id}`).then((res) => {
       setUser(res.data);
+     
     });
   };
 /*   const profile = () =>{
