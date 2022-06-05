@@ -1,14 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("./Connection/connection");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const path = require("path");
 require("dotenv").config();
 const app = express();
 // cors
 app.use(cors());
 // express json
-app.use(express.json())
+app.use(express.json());
 // body parser configuration
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,12 +16,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Get All Users
 const { allUsers } = require("./Controller/All Users");
 app.get("/", allUsers);
+
 // Get Id User
-const { getId } = require("./Controller/getIdUser");
+const { getId } = require("./Controller/get Id User");
 app.get("/getId/:idUser", getId);
 
 // Register
-const {uploadUser}  =require("./Upload/user")
+const { uploadUser } = require("./Upload/User");
 const { register } = require("./Controller/register");
 app.post("/register", uploadUser.single("Image"), register);
 
@@ -29,20 +30,40 @@ app.post("/register", uploadUser.single("Image"), register);
 const { login } = require("./Controller/login");
 app.post("/login", login);
 
-// Add Post
+// Update Id User
+const { updateIdUser } = require("./Controller/Update Id User");
+app.put("/UpdateIdUser/:idUser", uploadUser.single("Image"), updateIdUser);
 
-const {addPost} = require("./Controller/AddPost")
-app.post("/AddPost/:idUser",uploadUser.single("Images_Post"),addPost)
+// Delete Id User
+const { deleteIdUser } = require("./Controller/Delete User");
+app.delete("/deleteIdUser/:idUser", deleteIdUser);
+
+// Add Post
+const {uploadPost} = require("./Upload/Post");
+const { addPost } = require("./Controller/Add Post");
+app.post("/AddPost/:idUser", uploadPost.single("Images_Post"), addPost);
 
 // Get All AllPost
 const { allPost } = require("./Controller/All Post");
 app.get("/AllPost", allPost);
 
 // Get id Post viewProdect
-const { viewProdect } = require("./Controller/ViewProdect");
+const { viewProdect } = require("./Controller/View Prodect");
 app.get("/ViewProdect/:idPost", viewProdect);
 
-app.use(express.static(path.resolve(__dirname, "client/build")));
+// Get id User My Ads
+const { MyAds } = require("./Controller/My Ads");
+app.get("/MyAds/:idUser", MyAds);
+
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
+
+    app.listen(PORT, () => {
+      console.log(` http://localhost:${PORT}`);
+    });
+
+
+
+
+

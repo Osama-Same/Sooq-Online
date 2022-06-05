@@ -1,6 +1,8 @@
-use mysql1;
-create database mysql1;
-drop database mysql1;
+show databases;
+create database osamasalem1234;
+drop database osamasalem1234;
+drop TABLE users;
+drop TABLE Post;
 CREATE TABLE users (
     idUser INT AUTO_INCREMENT NOT NULL,
     Name VARCHAR(255) NOT NULL,
