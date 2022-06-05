@@ -7,6 +7,8 @@ import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import AddPost from "./components/Add Post/AddPost";
 import ViewProdect from "./components/View Prodect/Prodect";
+import Profile from "./components/Profile/Profile"
+import MyAds from "./components/My Ads/MyAds"
 // functional component
 const App = () => {
   return (
@@ -31,6 +33,14 @@ const App = () => {
         <Route exact path="/ViewProdect/:idPost">
           <Navbar />
           <ViewProdect />
+        </Route>
+        <Route exact path="/Profile/:idPost">
+          <Navbar />
+          <Profile />
+        </Route>
+        <Route exact path="/MyAds/:idUser">
+          <Navbar />
+          <MyAds />
         </Route>
       </Switch>
     </Router>

@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./home.css";
-const Home = () => {
-  const [post, setPost] = useState([]);
-
+const MyAds = () => {
+  const [post, setpost] = useState([]);
   useEffect(() => {
-    getPost();
-  }, []);
-  const getPost = () => {
-    axios.get("AllPost").then((res) => {
-      setPost(res.data);
-      
+    getMyAds();
+  },[]);
+  const getMyAds = () => {
+    const idUser = localStorage.getItem("idUser");
+    console.log(idUser)
+    axios.get(`MyAds/${idUser}`).then((res) => {
+      setpost(res.data);
+      console.log(res.data);
     });
   };
-
-
   const data = post.map((e, i) => {
     return (
       <div className="col-md-4" key={i}>
@@ -65,14 +63,11 @@ const Home = () => {
       </div>
     );
   });
-
   return (
     <div className="container">
-      <div>
-        <p>Shop</p>
-      </div>
       <div className="row">{data}</div>
     </div>
   );
 };
-export default Home;
+
+export default MyAds;

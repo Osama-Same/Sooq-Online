@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./register.css";
 import axios from "axios";
 
@@ -11,7 +11,7 @@ const Register = () => {
   const [Country, setCountry] = useState("");
   const [Image, setImage] = useState(null);
   const [errors, setErrors] = useState("");
-  const form = useRef(null);
+
   const handleFirstName = (e) => {
     setName(e.target.value);
     console.log(e.target.value);
@@ -74,52 +74,52 @@ const Register = () => {
         <div className="form-text">
           <p>Fill out the form below to Register</p>
         </div>
-        <form ref={form} onSubmit={save}>
-          <div className="form-group">
-            <input type="text" className="form-control item" name="Name" placeholder="Name..." onChange={handleFirstName} />
-          </div>
 
-          <div className="form-group">
-            <input type="email" className="form-control item" name="Email" placeholder="Email ..." onChange={handleEmail} />
-          </div>
-          <div className="form-group">
-            <input type="Password" className="form-control item" name="Passowrd" placeholder="Password..." onChange={handlePassowrd} />
-          </div>
-          <div className="form-group">
-            <input type="tel" className="form-control item" name="Phone" placeholder="Phone..." onChange={handlePhone} />
-          </div>
+        <div className="form-group">
+          <input type="text" className="form-control item" name="Name" placeholder="Name..." onChange={handleFirstName} />
+        </div>
 
-          <div className="form-group">
-            <input type="file" className="form-control item" accept=".jpg,.png,.svg" id="Image" name="Image" onChange={handleImage} multiple="" />
-          </div>
+        <div className="form-group">
+          <input type="email" className="form-control item" name="Email" placeholder="Email ..." onChange={handleEmail} />
+        </div>
+        <div className="form-group">
+          <input type="Password" className="form-control item" name="Passowrd" placeholder="Password..." onChange={handlePassowrd} />
+        </div>
+        <div className="form-group">
+          <input type="tel" className="form-control item" name="Phone" placeholder="Phone..." onChange={handlePhone} />
+        </div>
 
-          <div className="form-group">
-            <select className="form-control" name="Country" style={{ borderRadius: "20px" }} onChange={handleCountry}>
-              <option name="Country" value="">
-                Open this select Country
-              </option>
-              <option name="Country" value="Jordan">
-                Jordan
-              </option>
-              <option name="Country" value="Egypt">
-                Egypt
-              </option>
-              <option name="Country" value="Saudi Arabia">
-                Saudi Arabia
-              </option>
-              <option value="Iraq ">Iraq </option>
-              <option value="Syria">Syria </option>
-              <option value="Emirates">Emirates</option>
-              <option value="Qatar">Qatar</option>
-            </select>
-          </div>
+        <div className="form-group">
+          <input type="file" className="form-control item" accept=".jpg,.png,.svg" id="Image" name="Image" onChange={handleImage} multiple="" />
+        </div>
 
-          <div className="form-group">
-            <button type="submit" className="btn btn-block create-account" onClick={save}>
-              Register
-            </button>
-          </div>
-        </form>
+        <div className="form-group">
+          <select className="form-control" name="Country" style={{ borderRadius: "20px" }} onChange={handleCountry}>
+            <option name="Country" value="">
+              Open this select Country
+            </option>
+            <option name="Country" value="Jordan">
+              Jordan
+            </option>
+            <option name="Country" value="Egypt">
+              Egypt
+            </option>
+            <option name="Country" value="Saudi Arabia">
+              Saudi Arabia
+            </option>
+            <option value="Iraq ">Iraq </option>
+            <option value="Syria">Syria </option>
+            <option value="Emirates">Emirates</option>
+            <option value="Qatar">Qatar</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <button type="submit" className="btn btn-block create-account" onClick={save}>
+            Register
+          </button>
+        </div>
+
         <div className="form-text">
           <p>
             Already have an account ?
