@@ -22,7 +22,7 @@ const { getId } = require("./Controller/get Id User");
 app.get("/getId/:idUser", getId);
 
 // Register
-const { uploadUser } = require("./Upload/User");
+const { uploadUser } = require("./Upload/user");
 const { register } = require("./Controller/register");
 app.post("/register", uploadUser.single("Image"), register);
 
@@ -39,7 +39,7 @@ const { deleteIdUser } = require("./Controller/Delete User");
 app.delete("/deleteIdUser/:idUser", deleteIdUser);
 
 // Add Post
-const {uploadPost} = require("./Upload/Post");
+const {uploadPost} = require("./Upload/post");
 const { addPost } = require("./Controller/Add Post");
 app.post("/AddPost/:idUser", uploadPost.single("Images_Post"), addPost);
 
