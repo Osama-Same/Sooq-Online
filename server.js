@@ -55,7 +55,7 @@ app.get("/ViewProdect/:idPost", viewProdect);
 const { MyAds } = require("./Controller/My Ads");
 app.get("/MyAds/:idUser", MyAds);
 
-app.use(express.static(path.resolve(__dirname, "client/build")));
+app.use(express.static(path.resolve(__dirname, "/client/build")));
 
 const PORT = process.env.PORT || 5000;
 
