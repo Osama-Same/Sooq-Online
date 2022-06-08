@@ -26,3 +26,10 @@ CREATE TABLE Post (
     PRIMARY KEY (idPost),
     FOREIGN KEY (idUser) REFERENCES users (idUser)
 );
+CREATE TABLE category (
+    idCategory INT AUTO_INCREMENT NOT NULL,
+    name_Category VARCHAR (100),
+    Images_Category varchar(255),
+    PRIMARY KEY (idCategory),
+
+);

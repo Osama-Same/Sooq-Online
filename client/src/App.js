@@ -9,6 +9,8 @@ import AddPost from "./components/Add Post/AddPost";
 import ViewProdect from "./components/View Prodect/Prodect";
 import Profile from "./components/Profile/Profile"
 import MyAds from "./components/My Ads/MyAds"
+import Category from "./components/Category/Category"
+import ViewCategory from "./components/View Category/ViewCategory";
 // functional component
 const App = () => {
   return (
@@ -41,6 +43,14 @@ const App = () => {
         <Route exact path="/MyAds/:idUser">
           <Navbar />
           <MyAds />
+        </Route>
+        <Route exact path="/Category">
+          <Navbar />
+          <Category />
+        </Route>
+        <Route exact path="/Category/:Category_Post">
+          <Navbar />
+          <ViewCategory />
         </Route>
       </Switch>
     </Router>

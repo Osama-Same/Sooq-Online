@@ -19,17 +19,17 @@ const Prodect = () => {
         <div className="row">
           <div className="col-md-9 mx-auto" key={i}>
             <section className="p-3 mb-2 bg-dark text-white">
-              <h2 className="text-white mb-4">Product Details</h2>
+              <h2 className="text-center">Product Details</h2>
               <Link >
                 <img src={e.Image} alt="osama" width="40" height="35" className="rounded-circle" />
                 <small className="text-white"> {e.Name}</small>
               </Link>
-              <div className="row mt-1">
+              <div className="row justify-content-md-center">
                 <div className="col-md-5">
-                  <img src={e.Images_Post} className="img-thumbnail" height= '300px'  width= "100%" alt=""/>
+                  <img src={e.Images_Post} className="rounded"  style={{width:"100%" ,height:"300px"}}  alt=""/>
                 </div>
-                <div className="col-md-7">
-                  <dl className="row" style={{ margin: "10px 0px 0px ", width: "105%" }}>
+                <div className="col-md-7 text-white">
+                  <dl className="row text-white" style={{ margin: "10px 0px 0px ", width: "105%" }}>
                     <dt className="col-sm-3">
                       <i className="fa fa-shopping-cart"></i> Name :
                     </dt>

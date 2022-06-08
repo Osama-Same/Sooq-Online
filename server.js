@@ -22,9 +22,9 @@ const { getId } = require("./Controller/get Id User");
 app.get("/getId/:idUser", getId);
 
 // Register
-const { uploadUser } = require("./Upload/user");
+const { upload } = require("./Upload/upload");
 const { register } = require("./Controller/register");
-app.post("/register", uploadUser.single("Image"), register);
+app.post("/register", upload.single("Image"), register);
 
 // Login
 const { login } = require("./Controller/login");
@@ -32,16 +32,15 @@ app.post("/login", login);
 
 // Update Id User
 const { updateIdUser } = require("./Controller/Update Id User");
-app.put("/UpdateIdUser/:idUser", uploadUser.single("Image"), updateIdUser);
+app.put("/UpdateIdUser/:idUser", upload.single("Image"), updateIdUser);
 
 // Delete Id User
 const { deleteIdUser } = require("./Controller/Delete User");
 app.delete("/deleteIdUser/:idUser", deleteIdUser);
 
 // Add Post
-const {uploadPost} = require("./Upload/post");
 const { addPost } = require("./Controller/Add Post");
-app.post("/AddPost/:idUser", uploadPost.single("Images_Post"), addPost);
+app.post("/AddPost/:idUser", upload.single("Images_Post"), addPost);
 
 // Get All AllPost
 const { allPost } = require("./Controller/All Post");
@@ -55,13 +54,20 @@ app.get("/ViewProdect/:idPost", viewProdect);
 const { MyAds } = require("./Controller/My Ads");
 app.get("/MyAds/:idUser", MyAds);
 
+// Get All Category
+const { allCategory, insertCategory ,findNameCategory} = require("./Controller/Category");
+
+app.get("/Category", allCategory);
+
+// Insert Category
+app.post("/insertCategory", upload.single("Images_Category"), insertCategory);
+
+// Find Name Category
+
+app.get("/FindNameCategory/:Category_Post",findNameCategory)
 app.use(express.static(path.resolve(__dirname, "/client/build")));
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`REVIEW at http://localhost:${PORT}`));
-
-
-
-
 

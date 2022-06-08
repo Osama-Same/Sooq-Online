@@ -54,9 +54,9 @@ const AddPost = () => {
       .post(`AddPost/${id}`, fromData, config)
       .then((res) => {
         if (res.data.err) {
-          setErrors({err:res.data.err});
+          setErrors({ err: res.data.err });
         } else {
-          setErrors({result:res.data.result});
+          setErrors({ result: res.data.result });
         }
       })
       .catch((err) => {
@@ -67,7 +67,7 @@ const AddPost = () => {
     <div className="registration-form">
       <section>
         <div className="form-text">
-          <p style={{fontSize:"25px"}}>Add Post</p>
+          <p style={{ fontSize: "25px" }}>Add Post</p>
         </div>
         <div className="form-text">
           <p>Fill out the form below to Add Post</p>
@@ -84,7 +84,15 @@ const AddPost = () => {
         <div className="form-group">
           <select className="form-control" name="Category_Post" style={{ borderRadius: "20px" }} onChange={handleCategory_Post}>
             <option value="">Open this select Category</option>
-            <option value="Phone">Phone</option>
+            <option>Select Category</option>
+            <option value="Cars">Cars</option>
+            <option value="Tablet">Tablet</option>
+            <option value="Mobile">Mobile</option>
+            <option value="Computer">Computer</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Playstation">Playstation</option>
+            <option value="Baby Supplies">Baby Supplies</option>
+            <option value="Clothes">Clothes</option>
           </select>
         </div>
         <div className="form-group">

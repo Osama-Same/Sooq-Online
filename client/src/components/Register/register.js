@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./register.css";
 import axios from "axios";
-
 import { Link } from "react-router-dom";
 const Register = () => {
   const [Name, setName] = useState("");
@@ -35,10 +34,10 @@ const Register = () => {
     setImage(e.target.files[0]);
   };
 
-  const save = async (e) => {
+  const save = (e) => {
     e.preventDefault();
 
-    const fromData = await new FormData();
+    const fromData = new FormData();
     fromData.append("Name", Name);
     fromData.append("Email", Email);
     fromData.append("Passowrd", Passowrd);
@@ -47,11 +46,9 @@ const Register = () => {
     if (Image) {
       fromData.append("Image", Image, Image.name);
     }
-    const config = {
-      headers: { "content-type": "multipart/form-data" },
-    };
+ 
     axios
-      .post("register", fromData, config)
+      .post("register", fromData)
       .then((res) => {
         if (res.data) {
           setErrors(res.data);

@@ -45,7 +45,17 @@ const Navbar = () => {
                   <span className="fa fa-fw fa-home" style={{ color: "white" }}></span> Home
                 </Link>
               </li>
+              <li>
+                <Link className="nav-link" aria-current="page" to={`/Category`}>
+                  <span className="fa fa-fw fa-home" style={{ color: "white" }}></span> Category
+                </Link>
+              </li>
+              
             </ul>
+            <div class="input-group input-group-sm mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-sm">Small</span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
+</div>
             <ul className="nav navbar-nav ml-auto">
               <li>
                 <Link className="nav-link" to={`/AddPost/${users[0].idUser}`}>
