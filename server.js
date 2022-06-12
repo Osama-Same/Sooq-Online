@@ -68,9 +68,11 @@ app.get("/FindNameCategory/:Category_Post",findNameCategory)
 
 
 
-app.use(express.static(path.resolve(__dirname, "/client/build")));
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`REVIEW at http://localhost:${PORT}`));
+
+
 
