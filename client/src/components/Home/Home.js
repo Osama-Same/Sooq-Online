@@ -21,10 +21,6 @@ const Home = () => {
   };
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
-  /*   if (e.target.value == "") {
-      setPost([...post]);
-      return;
-    } */
     setPost(
       post.filter((e) => {
         return e.Category_Post.search(Category_Post) != -1;
