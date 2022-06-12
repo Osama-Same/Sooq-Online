@@ -14,6 +14,7 @@ require("dotenv").config();
   database: "mysql1",
 }); */
 
+
 connection.connect((err) => {
   if (err) {
     console.error("CONNECTION ERROR: ", err.stack);
