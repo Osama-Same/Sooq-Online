@@ -10,7 +10,6 @@ const Prodect = () => {
   const getidPost = () => {
     axios.get(`ViewProdect/${idPost}`).then((res) => {
       setViewProdect(res.data);
-      console.log(res.data[0].result);
     });
   };
   return ViewProdect.map((e, i) => {

@@ -19,12 +19,8 @@ INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID; */
     from Post 
     inner join users on Post.idUser = users.idUser`;
     connection.query(sql, (err, result) => {
-      if (err) {
-        res.json(err);
-        console.log(err)
-      }else{
-        res.json(result)
-      }
+      if (err) throw err;
+      res.json(result);
      
     });
 };

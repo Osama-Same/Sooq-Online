@@ -83,7 +83,7 @@ const AddPost = () => {
 
         <div className="form-group">
           <select className="form-control" name="Category_Post" style={{ borderRadius: "20px" }} onChange={handleCategory_Post}>
-            <option value="">Open this select Category</option>
+           
             <option>Select Category</option>
             <option value="Cars">Cars</option>
             <option value="Tablet">Tablet</option>

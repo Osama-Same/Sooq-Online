@@ -2,17 +2,43 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./home.css";
+import Header from "../Navbar/Header";
 const Home = () => {
   const [post, setPost] = useState([]);
-
+  const [search, setSearch] = useState("");
+  const [Category_Post, setCategory] = useState("");
   useEffect(() => {
     getPost();
-  }, []);
+  }, [search,Category_Post]);
   const getPost = () => {
     axios.get("AllPost").then((res) => {
       setPost(res.data);
-      
+      console.log(res.data);
     });
+  };
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  /*   if (e.target.value == "") {
+      setPost([...post]);
+      return;
+    } */
+    setPost(
+      post.filter((e) => {
+        return e.Category_Post.search(Category_Post) != -1;
+      })
+    );
+    console.log(Category_Post)
+  };
+  const findSearch = () => {
+    setPost(
+      post.filter((e) => {
+        return e.Name_Post.toUpperCase().search(search.toUpperCase()) !== -1;
+      })
+    );
+    console.log(search);
   };
 
 
@@ -67,11 +93,12 @@ const Home = () => {
   });
 
   return (
-    <div className="container">
-      <div>
-        <p>Shop</p>
+    <div>
+      <Header findSearch={findSearch} handleSearchChange={handleSearchChange} search={search}  handleCategoryChange={handleCategoryChange} Category_Post={Category_Post} />
+
+      <div className="container">
+        <div className="row">{data}</div>
       </div>
-      <div className="row">{data}</div>
     </div>
   );
 };

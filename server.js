@@ -65,6 +65,9 @@ app.post("/insertCategory", upload.single("Images_Category"), insertCategory);
 // Find Name Category
 
 app.get("/FindNameCategory/:Category_Post",findNameCategory)
+
+
+
 app.use(express.static(path.resolve(__dirname, "/client/build")));
 
 const PORT = process.env.PORT || 5000;
