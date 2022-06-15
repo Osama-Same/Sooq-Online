@@ -15,13 +15,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Users
 const { upload } = require("./Upload/upload");
-const { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser } = require("./Controller/Users");
+const { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser, login } = require("./Controller/Users");
 app.get("/", getAllUsers);
 app.get("/getId/:idUser", getIdUser);
 app.put("/UpdateIdUser/:idUser", upload.single("Image"), updateIdUser);
 app.delete("/deleteIdUser/:idUser", deleteIdUser);
 app.get("/MyAds/:idUser", MyAds);
 app.post("/register", upload.single("Image"), addUser);
+app.post("/login", login);
 
 // Post
 const { getAllPost, getIdPost, addPost, getLike, getDisLike, text } = require("./Controller/Post");
@@ -43,10 +44,6 @@ const { getAllComment, addComment, AllCommentLength } = require("./Controller/Co
 app.get("/GetComment/:idPost", getAllComment);
 app.post("/insertComment/:idPost", addComment);
 app.get("/AllCommentLength/:idPost", AllCommentLength);
-
-// Login
-const { login } = require("./Controller/login");
-app.post("/login", login);
 
 app.use(express.static(path.resolve(__dirname, "./client/build")));
 

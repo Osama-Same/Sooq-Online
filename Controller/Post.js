@@ -10,15 +10,15 @@ const getAllPost = (req, res) => {
         users.idUser, 
         users.Image,
         users.Name,
-        Post.Name_Post,
-        Post.Category_Post,
-        Post.Images_Post,
-        Post.Country_Post,
-        Post.Price_Post,
-        Post.Date_Post,
-        Post.idPost
-        from Post 
-        inner join users on Post.idUser = users.idUser`;
+        post.Name_Post,
+        post.Category_Post,
+        post.Images_Post,
+        post.Country_Post,
+        post.Price_Post,
+        post.Date_Post,
+        post.idPost
+        from post 
+        inner join users on post.idUser = users.idUser`;
   connection.query(sql, (err, result) => {
     if (err) throw err;
     res.json(result);
@@ -32,14 +32,14 @@ const getIdPost = (req, res) => {
           users.idUser, 
           users.Image,
           users.Name,
-          Post.Name_Post,
-          Post.Category_Post,
-          Post.Images_Post,
-          Post.Country_Post,
-          Post.Price_Post,
-          Post.Date_Post,
-          Post.idPost
-          from Post 
+          post.Name_Post,
+          post.Category_Post,
+          post.Images_Post,
+          post.Country_Post,
+          post.Price_Post,
+          post.Date_Post,
+          post.idPost
+          from post 
           inner join users on Post.idUser = users.idUser where idPost = '${idPost}'`;
   connection.query(sql, (err, result) => {
     if (err) {
