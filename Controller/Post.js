@@ -38,7 +38,6 @@ const getIdPost = (req, res) => {
           Post.Country_Post,
           Post.Price_Post,
           Post.Date_Post,
-          Post.Likee,
           Post.idPost
           from Post 
           inner join users on Post.idUser = users.idUser where idPost = '${idPost}'`;
@@ -74,10 +73,10 @@ const addPost = async (req, res) => {
   } else {
     res.json("No images Selected");
   }
-  let Likee = null;
+ 
   let Images_Post = url;
-  let sql = `insert INTO post(idUser,Name_Post,Category_Post,Images_Post,Country_Post,Price_Post,Date_Post,Likee)
-          VALUES('${idUser}','${Name_Post}','${Category_Post}','${Images_Post}','${Country_Post}','${Price_Post}','${Date_Post}','${Likee}')`;
+  let sql = `insert INTO post(idUser,Name_Post,Category_Post,Images_Post,Country_Post,Price_Post,Date_Post)
+          VALUES('${idUser}','${Name_Post}','${Category_Post}','${Images_Post}','${Country_Post}','${Price_Post}','${Date_Post}')`;
   connection.query(sql, (err, result) => {
     if (err) {
       res.json({ err: err });
