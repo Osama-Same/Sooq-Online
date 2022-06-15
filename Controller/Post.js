@@ -40,13 +40,12 @@ const getIdPost = (req, res) => {
           post.Date_Post,
           post.idPost
           from post 
-          inner join users on Post.idUser = users.idUser where idPost = '${idPost}'`;
+          inner join users on post.idUser = users.idUser where idPost = '${idPost}'`;
   connection.query(sql, (err, result) => {
     if (err) {
-      res.json({ err: "error" });
-      console.log(err);
-    }
-    if (result) {
+      res.json(err);
+      console.log(err)
+    }else{
       res.json(result);
     }
   });
@@ -91,7 +90,7 @@ const addPost = async (req, res) => {
 // update Like and unLike
 
 const getLike = (req, res) => {
-  let sql = `select * from Likee where idPost= ${req.params.idPost} and likee = 'like' `;
+  let sql = `select * from likee where idPost= ${req.params.idPost} and likee = 'like' `;
   connection.query(sql, (err, result) => {
     if (err) {
       res.json(err);
@@ -103,11 +102,10 @@ const getLike = (req, res) => {
   });
 };
 const getDisLike = (req, res) => {
-  let sql = `select * from Likee where idPost= ${req.params.idPost} and likee = 'Dislike'`;
+  let sql = `select * from likee where idPost= ${req.params.idPost} and likee = 'Dislike'`;
   connection.query(sql, (err, result) => {
     if (err) {
       res.json(err);
-
       console.log(err);
     } else {
       res.json(result.length);
@@ -115,7 +113,7 @@ const getDisLike = (req, res) => {
   });
 };
 const text = (req, res) => {
-  let sql = `select * from Likee where idUser= ${req.params.idUser} `;
+  let sql = `select * from likee where idUser= ${req.params.idUser} `;
 
   connection.query(sql, (err, result) => {
     if (err) {
@@ -124,7 +122,7 @@ const text = (req, res) => {
     }
     if (result) {
       if (!result[0]) {
-        let sql1 = `insert into Likee (idUser,idPost,Likee)VALUES('${req.params.idUser}','${req.body.idPost}','${req.body.Likee}')`;
+        let sql1 = `insert into likee (idUser,idPost,Likee)VALUES('${req.params.idUser}','${req.body.idPost}','${req.body.Likee}')`;
         connection.query(sql1, (err, result) => {
           if (err) {
             res.json(err);
@@ -135,7 +133,7 @@ const text = (req, res) => {
         });
       } else {
         let data = [req.body.Likee];
-        const sql = `UPDATE Likee SET Likee = ?, idPost = ${req.body.idPost} WHERE  idUser = ${req.params.idUser}`;
+        const sql = `UPDATE likee SET likee = ?, idPost = '${req.body.idPost}' WHERE  idUser = '${req.params.idUser}'`;
 
         connection.query(sql, data, (err) => {
           if (err) throw err;
