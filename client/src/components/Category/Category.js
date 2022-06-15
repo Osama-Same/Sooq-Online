@@ -18,11 +18,11 @@ const Category = () => {
 
   let data = category.map((e, i) => {
     return (
-      <div className="col-md-4 " style={{paddingBottom:"30px"}}>
+      <div className="col-md-4 " style={{paddingBottom:"30px"}} key={i}>
        <figure className="card card-product-grid card-lg">
           <img src={e.Images_Category} className="img-wrap" alt="..." style={{ width: "200", height: "168px" }} />
-          <div class="card-body ">
-            <h5 class="card-title text-center">{e.name_Category}</h5>
+          <div className="card-body ">
+            <h5 className="card-title text-center">{e.name_Category}</h5>
             <Link to={`/Category/${e.name_Category}`} className="btn btn-primary btn-sm ">View</Link>
           </div>
         </figure>
@@ -30,8 +30,8 @@ const Category = () => {
     );
   });
   return (
-    <div class="container">
-      <div class="row ">{data}</div>
+    <div className="container">
+      <div className="row ">{data}</div>
     </div>
   );
 };

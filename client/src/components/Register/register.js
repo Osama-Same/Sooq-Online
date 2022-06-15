@@ -121,7 +121,6 @@ const Register = () => {
           <p>
             Already have an account ?
             <Link to="/" style={{ textDecoration: "none" }}>
-              {" "}
               Login
             </Link>
           </p>

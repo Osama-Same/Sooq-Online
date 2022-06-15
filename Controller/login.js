@@ -20,8 +20,9 @@ const login = (req, res) => {
       if (result) {
         if (result.length > 0) {
           const idUser = result[0].idUser;
+          const Image = result[0].Image
           const token = jwt.sign({ idUser }, "jwtSecret", { expiresIn: process.env.TOKEN_EXPIRATION });
-          res.json({ result: "User registered sucessfully",token:token ,idUser:idUser});
+          res.json({ result: "User registered sucessfully",token:token ,idUser:idUser,Image:Image});
           console.log(result)
         } else {
           res.json({ err: "You have entered invalid Email or password" });

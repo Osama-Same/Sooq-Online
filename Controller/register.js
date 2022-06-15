@@ -15,10 +15,9 @@ const register = async (req, res) => {
   let Passowrd = req.body.Passowrd;
   let Phone = req.body.Phone;
   let Country = req.body.Country;
-
+  
   if (req.file) {
-    img = await cloudinary.uploader.upload(req.file.path,{folder: "Sooq Online/Users"});
-    
+    img = await cloudinary.uploader.upload(req.file.path, { folder: "Sooq Online/Users" });
   } else {
     res.json("No images Selected");
   }
@@ -34,7 +33,6 @@ const register = async (req, res) => {
       console.log({ err: "Email is invalid" });
       console.log(err);
     }
-    
 
     if (result) {
       res.json({ result: "Sign Up successfully" });

@@ -50,7 +50,7 @@ const Navbar = () => {
               </li>
               <li>
                 <Link className="nav-link" aria-current="page" to={`/Category`}>
-                  <span className="fa fa-fw fa-home" style={{ color: "white" }}></span> Category
+                  <span className="	fa fa-address-book" style={{ color: "white" }}></span> Category
                 </Link>
               </li>
             </ul>
@@ -82,7 +82,7 @@ const Navbar = () => {
                   </li>
 
                   <li>
-                    <button className="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+                    <button className="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">
                       <span className="fa fa-solid fa-trash" style={{ color: "black" }}></span> Delete Account
                     </button>
                   </li>
@@ -95,7 +95,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal fade" id="exampleModal1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
               <div className="modal-content text-white bg-dark">
                 <div className="modal-header">
@@ -103,12 +103,12 @@ const Navbar = () => {
                     Delete Account
                   </h5>
                 </div>
-                <div class="modal-body">Do you really want to delete your account</div>
+                <div className="modal-body">Do you really want to delete your account</div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-primary" data-bs-dismiss="modal">
                     Close
                   </button>
-                  <button type="submit" className="btn btn-danger" onClick={deleteIdUser}>
+                  <button type="submit" className="btn btn-primary" onClick={deleteIdUser}>
                     Delete
                   </button>
                 </div>

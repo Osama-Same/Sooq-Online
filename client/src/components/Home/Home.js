@@ -23,7 +23,7 @@ const Home = () => {
     setCategory(e.target.value);
     setPost(
       post.filter((e) => {
-        return e.Category_Post.search(Category_Post) != -1;
+        return e.Category_Post.search(Category_Post) !== -1;
       })
     );
     console.log(Category_Post)
@@ -48,7 +48,7 @@ const Home = () => {
               {e.Name}
             </Link>
           </span>
-          <Link to={"#"} className="img-wrap" data-abc="true">
+          <Link  className="img-wrap" data-abc="true">
             <img src={e.Images_Post} alt="" />
           </Link>
           <div className="bottom-wrap">
@@ -59,8 +59,7 @@ const Home = () => {
               </li>
               <li>
                 Category :{" "}
-                <Link to={""} className="badge bg-primary text-white">
-                  {" "}
+                <Link to={`/Category/${e.Category_Post}`} className="badge bg-primary text-white">
                   {e.Category_Post}
                 </Link>
               </li>
@@ -76,7 +75,7 @@ const Home = () => {
           </div>
 
           <div className="bottom-wrap">
-            <Link to={`/ViewProdect/${e.idPost}`} className="btn  btn-primary float-right" data-abc="true">
+            <Link to={`/ViewProdect/${e.idPost}`} className="btn  btn-primary float-right" data-abc="true"  getPost={getPost}>
               View Prodect
             </Link>
             <div className="price-wrap">

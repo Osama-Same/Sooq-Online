@@ -2,11 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 const ViewCategory = () => {
-  let { Category_Post } = useParams();
+ 
+  const [viewCategory, setViewCatogory] = useState([]);
   useEffect(() => {
     findNameCategory();
-  }, []);
-  const [viewCategory, setViewCatogory] = useState([]);
+  });
+  let { Category_Post } = useParams();
   const findNameCategory = () => {
     axios.get(`FindNameCategory/${Category_Post}`).then((res) => {
       setViewCatogory(res.data);
@@ -23,7 +24,7 @@ const ViewCategory = () => {
               {e.Name}
             </Link>
           </span>
-          <Link to={"#"} className="img-wrap" data-abc="true">
+          <Link  className="img-wrap" data-abc="true">
             <img src={e.Images_Post} alt="" />
           </Link>
           <div className="bottom-wrap">
@@ -34,7 +35,7 @@ const ViewCategory = () => {
               </li>
               <li>
                 Category :{" "}
-                <Link to={""} className="badge bg-primary text-white">
+                <Link to={`/Category/${e.Category_Post}`} className="badge bg-primary text-white">
                   {" "}
                   {e.Category_Post}
                 </Link>

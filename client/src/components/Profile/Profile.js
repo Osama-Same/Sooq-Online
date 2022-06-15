@@ -8,7 +8,6 @@ const Profile = () => {
   const [Phone, setPhone] = useState("");
   const [Country, setCountry] = useState("");
   const [Image, setImage] = useState(null);
-  const [errors, setErrors] = useState("");
   useEffect(() => {
     getIdUser();
   }, []);

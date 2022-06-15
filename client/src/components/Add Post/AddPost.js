@@ -9,6 +9,7 @@ const AddPost = () => {
   const [Country_Post, setCountry_Post] = useState("");
   const [Price_Post, setPrice_Post] = useState("");
   const [Date_Post, setDate_Post] = useState("");
+  const [Likee, setLikee] = useState(null);
   const [errors, setErrors] = useState("");
   const handleName_Post = (e) => {
     setName_Post(e.target.value);
@@ -43,6 +44,7 @@ const AddPost = () => {
     fromData.append("Country_Post", Country_Post);
     fromData.append("Price_Post", Price_Post);
     fromData.append("Date_Post", Date_Post);
+    fromData.append("Likee", Likee);
     if (Images_Post) {
       fromData.append("Images_Post", Images_Post, Images_Post.name);
     }

@@ -14,7 +14,7 @@ CREATE TABLE users (
     UNIQUE KEY unique_email (Email),
     PRIMARY KEY(idUser)
 );
-CREATE TABLE Post (
+CREATE TABLE post (
     idPost INT AUTO_INCREMENT NOT NULL,
     idUser INT,
     Name_Post VARCHAR(100) NOT NULL,
@@ -31,5 +31,23 @@ CREATE TABLE category (
     name_Category VARCHAR (100),
     Images_Category varchar(255),
     PRIMARY KEY (idCategory),
-
+);
+CREATE TABLE comment(
+    idComment INT AUTO_INCREMENT NOT NULL,
+    idUser int,
+    idPost int,
+    comment VARCHAR(100) NOT NULL,
+    date_comment VARCHAR(100) NOT NULL,
+    PRIMARY KEY (idComment),
+    FOREIGN KEY (idUser) REFERENCES users (idUser),
+    FOREIGN KEY (idPost) REFERENCES post (idPost)
+);
+CREATE TABLE likee(
+    idLike INT AUTO_INCREMENT NOT NULL,
+    idUser int,
+    idPost int,
+    Likee VARCHAR(100) NOT NULL,
+    PRIMARY KEY (idLike),
+    FOREIGN KEY (idUser) REFERENCES users (idUser),
+    FOREIGN KEY (idPost) REFERENCES post (idPost)
 );

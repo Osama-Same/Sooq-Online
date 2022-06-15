@@ -28,8 +28,10 @@ const Login = () => {
           setError(res.data);
         } else if (res.data.result) {
           const idUser = res.data.idUser;
+          const Image = res.data.Image;
           const token = res.data.token;
           localStorage.setItem("token", token);
+          localStorage.setItem("Image", Image);
           localStorage.setItem("idUser", idUser);
           history.push(`/Home/${idUser}`)
           

@@ -1,6 +1,8 @@
 const connection = require("../Connection/connection");
 const cloudinary = require("../Upload/cloudinary");
-const allCategory = (req, res) => {
+
+// Get All Category
+const getAllCategory = (req, res) => {
   //const idUser = req.params.idUser;
   let sql = `select * from category`;
   connection.query(sql, (err, result) => {
@@ -13,7 +15,9 @@ const allCategory = (req, res) => {
     }
   });
 };
-const insertCategory = async (req, res) => {
+
+// Add Category
+const addCategory = async (req, res) => {
   let name_Category = req.body.name_Category;
   let img = null
   if (req.file) {
@@ -33,6 +37,8 @@ const insertCategory = async (req, res) => {
 
   });
 };
+
+// Find Name Category
 const findNameCategory = (req, res) => {
   let Category_Post = req.params.Category_Post;
   let sql =  
@@ -57,4 +63,4 @@ connection.query(sql,(err,result)=>{
    }
 })
 };
-module.exports = { allCategory, insertCategory ,findNameCategory};
+module.exports = { getAllCategory, addCategory ,findNameCategory};

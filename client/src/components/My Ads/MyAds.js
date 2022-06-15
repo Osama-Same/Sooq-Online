@@ -35,7 +35,7 @@ const MyAds = () => {
               </li>
               <li>
                 Category :{" "}
-                <Link to={""} className="badge bg-primary text-white">
+                <Link to={`/Category/${e.Category_Post}`} className="badge bg-primary text-white">
                   {" "}
                   {e.Category_Post}
                 </Link>
@@ -56,7 +56,7 @@ const MyAds = () => {
               View Prodect
             </Link>
             <div className="price-wrap">
-              <span className="price h6">Price : {e.Price_Post}$</span> <br /> <small className="text-success">Free shipping</small>
+              <span className="price h6">Price : {e.Price_Post}$</span> <br /> 
             </div>
           </div>
         </figure>
