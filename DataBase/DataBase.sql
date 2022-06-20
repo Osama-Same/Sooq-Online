@@ -3,6 +3,9 @@ create database osamasalem1234;
 drop database osamasalem1234;
 drop TABLE users;
 drop TABLE Post;
+
+
+
 CREATE TABLE users (
     idUser INT AUTO_INCREMENT NOT NULL,
     Name VARCHAR(255) NOT NULL,
@@ -50,4 +53,14 @@ CREATE TABLE likee(
     PRIMARY KEY (idLike),
     FOREIGN KEY (idUser) REFERENCES users (idUser),
     FOREIGN KEY (idPost) REFERENCES post (idPost)
+);
+
+
+CREATE TABLE follow(
+    idFollow INT AUTO_INCREMENT NOT NULL,
+    idUser int ,
+    follow VARCHAR(100) NOT NULL,
+    idUser2 int,
+    PRIMARY KEY (idFollow),
+    FOREIGN KEY (idUser) REFERENCES users (idUser)
 );

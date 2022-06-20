@@ -15,7 +15,7 @@ const Prodect = () => {
     getLike();
     getDislike();
     getCommentLength();
-  }, [vauleComment]);
+  }, [vauleComment,valueLikee,Dislike]);
   let { idPost } = useParams();
   let Image = localStorage.getItem("Image");
   const idUser = localStorage.getItem("idUser");
@@ -37,12 +37,14 @@ const Prodect = () => {
       date_comment: date_comment,
     };
     axios.post(`insertComment/${idPost}`, data).then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
     });
   };
   const getComment = () => {
     axios.get(`GetComment/${idPost}`).then((res) => {
+      if(res.data){
       setValueComment(res.data);
+      }
     });
   };
   const getCommentLength = () => {

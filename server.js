@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Users
 const { upload } = require("./Upload/upload");
-const { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser, login } = require("./Controller/Users");
+const { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser, login ,getAllUnfollow,updateFollow ,getAllFollow} = require("./Controller/Users");
 app.get("/", getAllUsers);
 app.get("/getId/:idUser", getIdUser);
 app.put("/UpdateIdUser/:idUser", upload.single("Image"), updateIdUser);
@@ -23,6 +23,9 @@ app.delete("/deleteIdUser/:idUser", deleteIdUser);
 app.get("/MyAds/:idUser", MyAds);
 app.post("/register", upload.single("Image"), addUser);
 app.post("/login", login);
+app.get("/getAllUnfollow/:idUser",getAllUnfollow)
+app.post("/UpdateFollow/:idUser",updateFollow)
+app.get("/GetAllFollow/:idUser",getAllFollow)
 
 // Post
 const { getAllPost, getIdPost, addPost, getLike, getDisLike, text } = require("./Controller/Post");

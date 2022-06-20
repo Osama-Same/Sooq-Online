@@ -44,7 +44,7 @@ const Home = () => {
         <figure className="card card-product-grid card-lg">
           <span>
             <img src={e.Image} width="40" height="35" className="rounded-circle" alt="" />
-            <Link className="card-subtitle mb-2 text-muted" style={{ padding: "5px" }}>
+            <Link to={`/ProfileUser/${e.idUser}`} className="card-subtitle mb-2 text-muted" style={{ padding: "5px" }}>
               {e.Name}
             </Link>
           </span>

@@ -11,7 +11,10 @@ import Profile from "./components/Profile/Profile"
 import MyAds from "./components/My Ads/MyAds"
 import Category from "./components/Category/Category"
 import ViewCategory from "./components/View Category/ViewCategory";
-
+import FindUsers from "./components/Find Users/FindUsers";
+import ProfileUser from "./components/Profile/ProfileUser";
+import Follow from "./components/Profile/Follow";
+import NavbarProfile from "./components/Profile/NavbarProfile";
 // functional component
 const App = () => {
   return (
@@ -39,6 +42,7 @@ const App = () => {
         </Route>
         <Route exact path="/Profile/:idPost">
           <Navbar />
+          <NavbarProfile/>
           <Profile />
         </Route>
         <Route exact path="/MyAds/:idUser">
@@ -53,7 +57,18 @@ const App = () => {
           <Navbar />
           <ViewCategory />
         </Route>
-     
+        <Route exact path="/FindUsers/:idUser">
+          <Navbar />
+          <FindUsers />
+        </Route>
+        <Route exact path="/ProfileUser/:idUser">
+          <Navbar />
+          <ProfileUser />
+        </Route>
+        <Route exact path="/Follow/:idUser">
+          <Navbar />
+          <Follow />
+        </Route>
       </Switch>
     </Router>
   );

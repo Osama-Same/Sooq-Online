@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Follow from "./Follow";
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [Name, setName] = useState("");
@@ -76,6 +77,7 @@ const Profile = () => {
       });
   };
   return (
+    
     <div className="container rounded bg-black mt-5">
       {user && (
         <div className="row p-3 mb-2 bg-dark text-white">
@@ -180,6 +182,7 @@ const Profile = () => {
           </div>
         </div>
       )}
+      <Follow/>
     </div>
   );
 };

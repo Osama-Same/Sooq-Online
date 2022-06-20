@@ -53,6 +53,11 @@ const Navbar = () => {
                   <span className="	fa fa-address-book" style={{ color: "white" }}></span> Category
                 </Link>
               </li>
+              <li>
+                <Link className="nav-link" aria-current="page" to={`/FindUsers/${users[0].idUser}`}>
+                  <span className="	fa fa-address-book" style={{ color: "white" }}></span> Find Users
+                </Link>
+              </li>
             </ul>
 
             <ul className="nav navbar-nav ml-auto" style={{marginTop:"11px"}}>
@@ -80,6 +85,12 @@ const Navbar = () => {
                       <span className="fa fa-adjust" style={{ color: "black" }}></span> My Ads
                     </Link>
                   </li>
+                  <li>
+ 
+                    <Link to={`/Follow/${users[0].idUser}`} className="dropdown-item">
+                      <span className="fa fa-user-friends" style={{ color: "black" }}></span> Follow
+                    </Link>
+                  </li>
 
                   <li>
                     <button className="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">
@@ -88,7 +99,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <button type="submit" className="dropdown-item" onClick={logOut}>
-                      <span className="fa fa-sign-out" style={{ color: "black" }}></span> Log out
+                      <span className="fas fa-sign-out-alt" style={{ color: "black" }}></span> Log out
                     </button>
                   </li>
                 </ul>
