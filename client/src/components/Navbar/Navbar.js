@@ -5,20 +5,18 @@ import axios from "axios";
 
 const Navbar = () => {
   const [users, setUser] = useState(null);
-
+  const id = localStorage.getItem("idUser");
   let history = useHistory();
   useEffect(() => {
     getId();
   }, []);
   const getId = () => {
-    const id = localStorage.getItem("idUser");
     axios.get(`getId/${id}`).then((res) => {
       setUser(res.data);
       console.log(res.data);
     });
   };
   const deleteIdUser = () => {
-    let id = localStorage.getItem("idUser");
     axios.delete(`deleteIdUser/${id}`).then(() => {
       localStorage.clear();
       history.push("/");
@@ -29,7 +27,6 @@ const Navbar = () => {
     history.push("/");
     console.log("clear records");
   };
- 
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -60,9 +57,7 @@ const Navbar = () => {
               </li>
             </ul>
 
-            <ul className="nav navbar-nav ml-auto" style={{marginTop:"11px"}}>
-           
-
+            <ul className="nav navbar-nav ml-auto" style={{ marginTop: "11px" }}>
               <li>
                 <Link className="nav-link" to={`/AddPost/${users[0].idUser}`}>
                   <span className="fa fa-plus-square" style={{ color: "white" }}></span> Add Post
@@ -86,7 +81,6 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
- 
                     <Link to={`/Follow/${users[0].idUser}`} className="dropdown-item">
                       <span className="fa fa-user-friends" style={{ color: "black" }}></span> Follow
                     </Link>

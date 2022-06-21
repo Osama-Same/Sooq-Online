@@ -42,7 +42,6 @@ const App = () => {
         </Route>
         <Route exact path="/Profile/:idPost">
           <Navbar />
-          <NavbarProfile/>
           <Profile />
         </Route>
         <Route exact path="/MyAds/:idUser">
