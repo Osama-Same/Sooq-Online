@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import "../Register/register.css";
 import { Link, useHistory } from "react-router-dom";
 
 import axios from "axios";
 
 const Login = () => {
- 
   const [Email, setEmail] = useState("");
   const [Passowrd, setPassowrd] = useState("");
   const [error, setError] = useState({});
@@ -33,59 +31,64 @@ const Login = () => {
           localStorage.setItem("token", token);
           localStorage.setItem("Image", Image);
           localStorage.setItem("idUser", idUser);
-          history.push(`/Home/${idUser}`)
-          
+          history.push(`/Home/${idUser}`);
           setError(res.data);
           console.log(res.data.result);
         } else if (res.data.err) {
           setError(res.data);
           console.log(res.data.err);
         }
-       
       })
       .catch((err) => {
         console.log(err);
       });
   };
   return (
-    <div className="registration-form">
-      <section>
-        <div className="form-icon">
-          <span>Login</span>
+    <div className="pt-3 pb-3">
+      <div className="text-center text-white pt-3 pb-3">
+        <h5 className="text-capitalize fst-italic" style={{ paddingTop: "10px" }}>
+          Sooq Online
+        </h5>
+      </div>
+      <div className="container">
+        <div className="row  justify-content-md-center ">
+          <div className="col-md-6 text-white" id="login">
+            <div className="text-center pt-3 pb-3">
+              <h4>
+                <strong>Login In</strong>
+              </h4>
+            </div>
+            <div className="pt-3 pb-3">
+              <label> Email </label>
+              {error.Email && <label style={{ color: "red", marginLeft: "30%" }}>{error.Email}</label>}
+              <input type="email" className="form-control" name="Email" placeholder="Email ..." onChange={handleEmail} />
+            </div>
+            <div className="pt-3 pb-3">
+              <label>Password</label>
+              {error.Passowrd && <label style={{ color: "red", marginLeft: "15%" }}>{error.Passowrd}</label>}
+              <input type="password" className="form-control" name="Passowrd" placeholder="Password..." onChange={handlePassowrd} />
+            </div>
+            <div className="text-center pt-3 pb-3">
+              <button type="submit" className="btn btn-primary btn-lg" style={{ width: "100%" }} onClick={save}>
+                Submit
+              </button>
+            </div>
+            <div className="text-center pt-3 pb-3">
+              <p>
+                Already have an account ?
+                <Link to="/Register" style={{ textDecoration: "none" }}>
+                  Register
+                </Link>
+              </p>
+            </div>
+            <div className="text-center pt-3 pb-3" style={{ color: "red", textAlign: "center" }}>
+              {error.err && (
+                  <p>{error.err}</p>
+              )}
+            </div>
+          </div>
         </div>
-        <div className="form-text">
-          <p>Fill out the form below to Login</p>
-        </div>
-        <div className="form-group">
-          <input type="email" className="form-control item" name="Email" placeholder="Email ..." onChange={handleEmail} />
-        </div>
-        <div className="form-group">
-          <input type="Password" className="form-control item" name="Passowrd" placeholder="Password..." onChange={handlePassowrd} />
-        </div>
-        <div className="form-group">
-          <button type="submit" className="btn btn-block create-account" onClick={save}>
-            Login
-          </button>
-        </div>
-        <div className="form-text">
-          <p>
-            Already have an account ?<Link to="/register"style={{ textDecoration: "none" }}> Register</Link>
-          </p>
-        </div>
-        <div className="form-text" style={{ color: "red" , textAlign: "center"}}>
-          {error.result ||
-            error.Email ||
-            error.err ||
-            (error.Passowrd && (
-              <div>
-                <p>{error.err}</p>
-                <p>{error.result}</p>
-                <p>{error.Passowrd}</p>
-                <p>{error.Email}</p>
-              </div>
-            ))}
-        </div>
-      </section>
+      </div>
     </div>
   );
 };

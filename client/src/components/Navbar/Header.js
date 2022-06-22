@@ -6,17 +6,7 @@ const Header = (props) => {
       <div className="container-fluid">
         <div className="row p-2 pt-3 pb-3 d-flex align-items-center">
           <div className="col-md-2 d-none d-md-flex">
-            <select className="form-select" name="Category_Post"  onClick={props.handleCategoryChange} style={{height:"38px"}}>
-            <option>Select Category</option>
-              <option >Cars</option>
-              <option >Tablet</option>
-              <option >Mobile</option>
-              <option >Computer</option>
-              <option >Laptop</option>
-              <option >Playstation</option>
-              <option >Baby Supplies</option>
-              <option >Clothes</option>
-            </select>
+         
           </div>
           <div className="col-md-8">
             <div className="d-flex form-inputs">

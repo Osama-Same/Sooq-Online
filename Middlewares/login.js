@@ -21,10 +21,10 @@ module.exports = function validateLogin(data) {
   // Password checks
 
   if (validator.isEmpty(data.Passowrd)) {
-    error.Passowrd = "Passowrd field is required";
-  }
+    error.Passowrd = "Password field is required";
+  }else
   if (!validator.isLength(data.Passowrd, { min: 4, max: 30 })) {
-    error.Passowrd = "Password must be at least 6 characters";
+    error.Passowrd = "Password must be at least 4 characters";
   }
 
   return { error, isValid: isEmpty(error) };

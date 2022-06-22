@@ -2,7 +2,7 @@ import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import "./App.css";
 import Login from "./components/Login/Login";
-import Register from "./components/Register/register";
+import Register from "./components/Register/Register";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import AddPost from "./components/Add Post/AddPost";
@@ -14,7 +14,7 @@ import ViewCategory from "./components/View Category/ViewCategory";
 import FindUsers from "./components/Find Users/FindUsers";
 import ProfileUser from "./components/Profile/ProfileUser";
 import Follow from "./components/Profile/Follow";
-import NavbarProfile from "./components/Profile/NavbarProfile";
+
 // functional component
 const App = () => {
   return (

@@ -6,10 +6,10 @@ import Header from "../Navbar/Header";
 const Home = () => {
   const [post, setPost] = useState([]);
   const [search, setSearch] = useState("");
-  const [Category_Post, setCategory] = useState("");
+
   useEffect(() => {
     getPost();
-  }, [search,Category_Post]);
+  }, [search]);
   const getPost = () => {
     axios.get("AllPost").then((res) => {
       setPost(res.data);
@@ -19,15 +19,7 @@ const Home = () => {
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
   };
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
-    setPost(
-      post.filter((e) => {
-        return e.Category_Post.search(Category_Post) !== -1;
-      })
-    );
-    console.log(Category_Post)
-  };
+
   const findSearch = () => {
     setPost(
       post.filter((e) => {
@@ -89,7 +81,7 @@ const Home = () => {
 
   return (
     <div>
-      <Header findSearch={findSearch} handleSearchChange={handleSearchChange} search={search}  handleCategoryChange={handleCategoryChange} Category_Post={Category_Post} />
+      <Header findSearch={findSearch} handleSearchChange={handleSearchChange} search={search}   />
 
       <div className="container">
         <div className="row">{data}</div>

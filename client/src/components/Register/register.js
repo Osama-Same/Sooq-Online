@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import "./register.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link ,useHistory} from "react-router-dom";
 const Register = () => {
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
@@ -10,7 +9,7 @@ const Register = () => {
   const [Country, setCountry] = useState("");
   const [Image, setImage] = useState(null);
   const [errors, setErrors] = useState("");
-
+  let history = useHistory();
   const handleFirstName = (e) => {
     setName(e.target.value);
     console.log(e.target.value);
@@ -46,7 +45,7 @@ const Register = () => {
     if (Image) {
       fromData.append("Image", Image, Image.name);
     }
- 
+
     axios
       .post("register", fromData)
       .then((res) => {
@@ -56,6 +55,7 @@ const Register = () => {
           setErrors(res.data.err);
         } else {
           setErrors(res.data.result);
+          history.push(`/`);
         }
       })
       .catch((err) => {
@@ -63,89 +63,85 @@ const Register = () => {
       });
   };
   return (
-    <div className="registration-form">
-      <section>
-        <div className="form-icon">
-          <span>Register</span>
+    <div className="pt-3 pb-3">
+      <div className="text-center text-white pt-3 pb-3">
+        <h5 className="text-capitalize fst-italic" style={{ paddingTop: "10px" }}>
+          Sooq Online
+        </h5>
+      </div>
+      <div className="container">
+        <div className="row  justify-content-md-center ">
+          <div className="col-md-6 text-white" id="login">
+            <div className="text-center pt-3 pb-3">
+              <h4>
+                <strong>Register</strong>
+              </h4>
+            </div>
+            <div className="pt-3 pb-3">
+              <label> Name </label>
+              {errors.Name && <label style={{ color: "red", marginLeft: "30%" }}>{errors.Name}</label>}
+              <input type="text" className="form-control" name="Name" placeholder="Name ..." onChange={handleFirstName} />
+            </div>
+            <div className="pt-3 pb-3">
+              <label> Email </label>
+              {errors.Email && <label style={{ color: "red", marginLeft: "30%" }}>{errors.Email}</label>}
+              <input type="email" className="form-control" name="Email" placeholder="Email ..." onChange={handleEmail} />
+            </div>
+            <div className="pt-3 pb-3">
+              <label>Password</label>
+              {errors.Passowrd && <label style={{ color: "red", marginLeft: "15%" }}>{errors.Passowrd}</label>}
+              <input type="password" className="form-control" name="Passowrd" placeholder="Password..." onChange={handlePassowrd} />
+            </div>
+            <div className="pt-3 pb-3">
+              <label>Phone</label>
+              {errors.Phone && <label style={{ color: "red", marginLeft: "15%" }}>{errors.Phone}</label>}
+              <input type="tel" className="form-control" name="Phone" placeholder="Phone..." onChange={handlePhone} />
+            </div>
+            <div className="pt-3 pb-3">
+              <label>Country</label>
+              {errors.Country && <label style={{ color: "red", marginLeft: "15%" }}>{errors.Country}</label>}
+              <select className="form-control" name="Country"  onChange={handleCountry}>
+                <option name="Country" value="">
+                  Open this select Country
+                </option>
+                <option name="Country" value="Jordan">
+                  Jordan
+                </option>
+                <option name="Country" value="Egypt">
+                  Egypt
+                </option>
+                <option name="Country" value="Saudi Arabia">
+                  Saudi Arabia
+                </option>
+                <option value="Iraq ">Iraq </option>
+                <option value="Syria">Syria </option>
+                <option value="Emirates">Emirates</option>
+                <option value="Qatar">Qatar</option>
+              </select>
+            </div>
+            <div className="pt-3 pb-3">
+              <label>Image</label>
+              <input type="file" className="form-control" name="Image"  accept=".jpg,.png,.svg" onChange={handleImage} />
+            </div>
+            <div className="text-center pt-3 pb-3">
+              <button type="submit" className="btn btn-primary btn-lg" style={{ width: "100%" }} onClick={save}>
+                Submit
+              </button>
+            </div>
+            <div className="text-center pt-3 pb-3">
+              <p>
+                Already have an account ?
+                <Link to="/" style={{ textDecoration: "none" }}>
+                  Login
+                </Link>
+              </p>
+            </div>
+            <div className="form-group" style={{ color: "red", textAlign: "center" }}>
+            {errors.err && <p>{errors.err}</p>}
+            </div>
+          </div>
         </div>
-        <div className="form-text">
-          <p>Fill out the form below to Register</p>
-        </div>
-
-        <div className="form-group">
-          <input type="text" className="form-control item" name="Name" placeholder="Name..." onChange={handleFirstName} />
-        </div>
-
-        <div className="form-group">
-          <input type="email" className="form-control item" name="Email" placeholder="Email ..." onChange={handleEmail} />
-        </div>
-        <div className="form-group">
-          <input type="Password" className="form-control item" name="Passowrd" placeholder="Password..." onChange={handlePassowrd} />
-        </div>
-        <div className="form-group">
-          <input type="tel" className="form-control item" name="Phone" placeholder="Phone..." onChange={handlePhone} />
-        </div>
-
-        <div className="form-group">
-          <input type="file" className="form-control item" accept=".jpg,.png,.svg" id="Image" name="Image" onChange={handleImage} multiple="" />
-        </div>
-
-        <div className="form-group">
-          <select className="form-control" name="Country" style={{ borderRadius: "20px" }} onChange={handleCountry}>
-            <option name="Country" value="">
-              Open this select Country
-            </option>
-            <option name="Country" value="Jordan">
-              Jordan
-            </option>
-            <option name="Country" value="Egypt">
-              Egypt
-            </option>
-            <option name="Country" value="Saudi Arabia">
-              Saudi Arabia
-            </option>
-            <option value="Iraq ">Iraq </option>
-            <option value="Syria">Syria </option>
-            <option value="Emirates">Emirates</option>
-            <option value="Qatar">Qatar</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <button type="submit" className="btn btn-block create-account" onClick={save}>
-            Register
-          </button>
-        </div>
-
-        <div className="form-text">
-          <p>
-            Already have an account ?
-            <Link to="/" style={{ textDecoration: "none" }}>
-              Login
-            </Link>
-          </p>
-        </div>
-        <div className="form-group" style={{ color: "red", textAlign: "center" }}>
-          {errors.FirstName ||
-            errors.Email ||
-            errors.Passowrd ||
-            errors.Phone ||
-            errors.Country ||
-            errors.err ||
-            (errors.result && (
-              <div>
-                <p>{errors.FirstName}</p>
-                <p>{errors.Email}</p>
-                <p>{errors.Passowrd}</p>
-                <p>{errors.Phone}</p>
-
-                <p>{errors.Country}</p>
-                <p>{errors.err}</p>
-                <p>{errors.result}</p>
-              </div>
-            ))}
-        </div>
-      </section>
+      </div>
     </div>
   );
 };
