@@ -8,13 +8,12 @@ import Navbar from "./components/Navbar/Navbar";
 import AddPost from "./components/Add Post/AddPost";
 import ViewProdect from "./components/View Prodect/Prodect";
 import Profile from "./components/Profile/Profile"
-import MyAds from "./components/My Ads/MyAds"
+import MyAds from "./components/Profile/MyAds"
 import Category from "./components/Category/Category"
 import ViewCategory from "./components/View Category/ViewCategory";
-import FindUsers from "./components/Find Users/FindUsers";
-import ProfileUser from "./components/Profile/ProfileUser";
-import Follow from "./components/Profile/Follow";
-
+import ProfileUser from "./components/Profile User/ProfileUser";
+import UserMyAds from "./components/Profile User/UserMyAds";
+import Chat from "./components/Chat/Chat";
 // functional component
 const App = () => {
   return (
@@ -56,18 +55,20 @@ const App = () => {
           <Navbar />
           <ViewCategory />
         </Route>
-        <Route exact path="/FindUsers/:idUser">
-          <Navbar />
-          <FindUsers />
-        </Route>
+      
         <Route exact path="/ProfileUser/:idUser">
           <Navbar />
           <ProfileUser />
         </Route>
-        <Route exact path="/Follow/:idUser">
+        <Route exact path="/MyAdsUser/:idUser">
           <Navbar />
-          <Follow />
+          <UserMyAds />
         </Route>
+        <Route exact path="/Chat/:idUser">
+          <Navbar />
+          <Chat />
+        </Route>
+      
       </Switch>
     </Router>
   );

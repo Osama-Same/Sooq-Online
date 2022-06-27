@@ -50,11 +50,7 @@ const Navbar = () => {
                   <span className="	fa fa-address-book" style={{ color: "white" }}></span> Category
                 </Link>
               </li>
-              <li>
-                <Link className="nav-link" aria-current="page" to={`/FindUsers/${users[0].idUser}`}>
-                  <span className="	fa fa-address-book" style={{ color: "white" }}></span> Find Users
-                </Link>
-              </li>
+              
             </ul>
 
             <ul className="nav navbar-nav ml-auto" style={{ marginTop: "11px" }}>

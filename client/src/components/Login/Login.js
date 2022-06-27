@@ -46,7 +46,7 @@ const Login = () => {
   return (
     <div className="pt-3 pb-3">
       <div className="text-center text-white pt-3 pb-3">
-        <h5 className="text-capitalize fst-italic" style={{ paddingTop: "10px" }}>
+        <h5 className="text-capitalize " style={{ paddingTop: "10px" ,fontStyle:"italic" }}>
           Sooq Online
         </h5>
       </div>
@@ -60,7 +60,7 @@ const Login = () => {
             </div>
             <div className="pt-3 pb-3">
               <label> Email </label>
-              {error.Email && <label style={{ color: "red", marginLeft: "30%" }}>{error.Email}</label>}
+              {error.Email && <label style={{ color: "red", marginLeft: "30%" }} >{error.Email}</label>}
               <input type="email" className="form-control" name="Email" placeholder="Email ..." onChange={handleEmail} />
             </div>
             <div className="pt-3 pb-3">
@@ -69,7 +69,7 @@ const Login = () => {
               <input type="password" className="form-control" name="Passowrd" placeholder="Password..." onChange={handlePassowrd} />
             </div>
             <div className="text-center pt-3 pb-3">
-              <button type="submit" className="btn btn-primary btn-lg" style={{ width: "100%" }} onClick={save}>
+              <button type="submit" className="btn btn-primary " style={{ width: "100%" }} onClick={save}>
                 Submit
               </button>
             </div>

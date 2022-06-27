@@ -176,66 +176,101 @@ const login = (req, res) => {
   });
 };
 
-//  Get All unFollow
-const getAllUnfollow = (req, res) => {
-  let sql = `select * from users INNER JOIN follow on follow.idUser2 = users.idUser where not users.idUser = '${req.params.idUser}' and follow.follow = 'unFollow'` ;
+// chat insert sender
 
-  connection.query(sql, (err, result) => {
-    if (err) {
-      res.json(err);
-      console.log(err);
-    }
-    if (result) {
-      res.json(result);
-    }
-  });
-};
-
-// get All follow
-const getAllFollow = (req, res) => {
-  let sql = `select * from users where not idUser = ${req.params.idUser}`;
-  connection.query(sql, (err, result) => {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(result);
-    }
-  });
-};
-
-// Update Follow Usere
-
-const updateFollow = (req, res) => {
+const sender = (req, res) => {
   let idUser = req.params.idUser;
-  let idUser2 = req.body.idUser2;
-  let follow = [req.body.follow];
-  const sql = `select * from follow where idUser2 = '${idUser2}' and idUser = '${idUser}'`;
+  const idUser2 = req.body.idUser2;
+  let sql = `select * from users where idUser = '${idUser}'`;
   connection.query(sql, (err, result) => {
     if (err) {
-      res.json(err);
+      res.json({ err: "error" });
     }
     if (result) {
-      if (!result[0]) {
-        let sql1 = `insert into follow (idUser,idUser2,follow) VALUES ('${idUser}','${idUser2}',?)`;
-        connection.query(sql1, follow, (err, result) => {
-          if (err) {
-            res.json(err);
+      let sql = `select * from massage where idUser2 = ${idUser2}`;
+      connection.query(sql, (err, result) => {
+        if (err) {
+          res.json({ err: "error" });
+        }
+        if (result) {
+          if (result[0].idUser2) {
+            let sender = req.body.sender;
+            // let receiver = req.body.receiver;
+            let sql1 = `insert into massage (idUser,idUser2,sender) values
+                    ('${idUser}','${idUser2}','${sender}')`;
+            connection.query(sql1, (err, result) => {
+              if (err) {
+                res.json(err);
+              } else {
+                res.json(result);
+              }
+            });
           }
-          res.json("insert");
-        });
-      } else {
-        //let sql = `delete from follow where idUser2='${idUser2}'`;
-        let sql2 = `UPDATE follow SET follow = '${follow}'  WHERE  idUser = '${idUser}' and idUser2 = '${idUser2}'`;
-        connection.query(sql2, (err, result) => {
+        }
+      });
+    }
+  });
+};
+
+// chat insert receiver
+
+const receiver = (req, res) => {
+  let idUser = req.params.idUser;
+  const idUser2 = req.body.idUser2;
+  let sql = `select * from users where idUser = '${idUser}'`;
+  connection.query(sql, (err, result) => {
+    if (err) {
+      res.json({ err: "error" });
+    }
+    if (result) {
+      let sql = `select * from massage where idUser2 = ${idUser2}`;
+      connection.query(sql, (err, result) => {
+        if (err) {
+          res.json({ err: "error" });
+        }
+        if (result) {
+          if (result[0].idUser2) {
+            //let sender = req.body.sender;
+            let receiver = req.body.receiver;
+            let sql1 = `insert into massage (idUser,idUser2,receiver) values
+                    ('${idUser}','${idUser2}','${receiver}')`;
+            connection.query(sql1, (err, result) => {
+              if (err) {
+                res.json(err);
+              } else {
+                res.json(result);
+              }
+            });
+          }
+        }
+      });
+    }
+  });
+};
+
+// chat Get receiver
+const getMassage = (req, res) => {
+  let idUser = req.params.idUser;
+  const idUser2 = req.body.idUser2;
+  let sql = `select * from users where idUser = '${idUser}'`;
+  connection.query(sql, (err, result) => {
+    if (err) {
+      res.json({ err: "error" });
+      console.log(err)
+    }else
+    if (result) {
+      if (result[0].idUser) {
+        let sql = `select * from massage where idUser2 = ${idUser2}`;
+        connection.query(sql, (err, result) => {
           if (err) {
-            res.json(err);
+            res.json({ err: "error" });
+            console.log(err)
           } else {
-            res.json("Delete");
+            res.json(result);
           }
         });
       }
     }
   });
 };
-
-module.exports = { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser, login, getAllUnfollow, updateFollow, getAllFollow };
+module.exports = { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser, login, sender, receiver ,getMassage};

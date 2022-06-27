@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Users
 const { upload } = require("./Upload/upload");
-const { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser, login ,getAllUnfollow,updateFollow ,getAllFollow} = require("./Controller/Users");
+const { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser, login ,sender,receiver, getMassage} = require("./Controller/Users");
 app.get("/", getAllUsers);
 app.get("/getId/:idUser", getIdUser);
 app.put("/UpdateIdUser/:idUser", upload.single("Image"), updateIdUser);
@@ -23,14 +23,15 @@ app.delete("/deleteIdUser/:idUser", deleteIdUser);
 app.get("/MyAds/:idUser", MyAds);
 app.post("/register", upload.single("Image"), addUser);
 app.post("/login", login);
-app.get("/getAllUnfollow/:idUser",getAllUnfollow)
-app.post("/UpdateFollow/:idUser",updateFollow)
-app.get("/GetAllFollow/:idUser",getAllFollow)
+app.get("/GetMassage/:idUser", getMassage);
+app.post("/Sender/:idUser", sender);
+app.post("/Receiver/:idUser", receiver);
+
 
 // Post
 const { getAllPost, getIdPost, addPost, getLike, getDisLike, text } = require("./Controller/Post");
 app.get("/AllPost", getAllPost);
-app.get("/ViewProdect/:idPost", getIdPost);
+app.get("/GetIdPost/:idPost", getIdPost);
 app.post("/AddPost/:idUser", upload.single("Images_Post"), addPost);
 app.get("/GetLike/:idPost", getLike);
 app.get("/GetDisLike/:idPost", getDisLike);
@@ -43,10 +44,10 @@ app.post("/insertCategory", upload.single("Images_Category"), addCategory);
 app.get("/FindNameCategory/:Category_Post", findNameCategory);
 
 // comment
-const { getAllComment, addComment, AllCommentLength } = require("./Controller/Comment");
+const { getAllComment, addComment } = require("./Controller/Comment");
 app.get("/GetComment/:idPost", getAllComment);
 app.post("/insertComment/:idPost", addComment);
-app.get("/AllCommentLength/:idPost", AllCommentLength);
+
 
 app.use(express.static(path.resolve(__dirname, "./client/build")));
 

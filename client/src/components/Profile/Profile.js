@@ -126,7 +126,7 @@ const Profile = () => {
   return (
     <div>
       <NavbarProfile user={user} />
-      <div class="container px-4">{data}</div>
+      <div className="container px-4">{data}</div>
       <div>
         <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog">

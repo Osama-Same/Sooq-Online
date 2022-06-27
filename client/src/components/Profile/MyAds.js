@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import NavbarProfile from "./NavbarProfile";
+
 const MyAds = () => {
   const [post, setpost] = useState([]);
   useEffect(() => {
@@ -64,8 +66,11 @@ const MyAds = () => {
     );
   });
   return (
+    <div>
+      <NavbarProfile/>
     <div className="container">
       <div className="row">{data}</div>
+    </div>
     </div>
   );
 };

@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 const Prodect = () => {
-  const [ViewProdect, setViewProdect] = useState([]);
-  const [vauleComment, setValueComment] = useState([]);
-  const [allCommentLength, setAllCommentLength] = useState([]);
-  const [valueLikee, setLikee] = useState([]);
-  const [Dislike, setDisLike] = useState([]);
+  const [iPost, setIdPost] = useState([]);
+  const [getComment, setGetComment] = useState([]);
   const [comment, setComment] = useState("");
-
+  const [Likee,setLikee] = useState([])
+  const [disLike,setDisLike]=useState([])
   useEffect(() => {
     getidPost();
-    getComment();
+    getAllComment();
     getLike();
     getDislike();
-    getCommentLength();
-  }, [vauleComment,valueLikee,Dislike]);
+  }, [getComment]);
   let { idPost } = useParams();
-  let Image = localStorage.getItem("Image");
+  const Image = localStorage.getItem("Image");
   const idUser = localStorage.getItem("idUser");
   const getidPost = () => {
-    axios.get(`ViewProdect/${idPost}`).then((res) => {
-      setViewProdect(res.data);
+    axios.get(`GetIdPost/${idPost}`).then((res) => {
+      setIdPost(res.data);
     });
   };
   const handlComment = (e) => {
@@ -40,18 +37,14 @@ const Prodect = () => {
       //console.log(res.data);
     });
   };
-  const getComment = () => {
+  const getAllComment = () => {
     axios.get(`GetComment/${idPost}`).then((res) => {
-      if(res.data){
-      setValueComment(res.data);
+      if (res.data) {
+        setGetComment(res.data);
       }
     });
   };
-  const getCommentLength = () => {
-    axios.get(`AllCommentLength/${idPost}`).then((res) => {
-      setAllCommentLength(res.data);
-    });
-  };
+
 
   const updateLike = () => {
     let data = {
@@ -81,79 +74,51 @@ const Prodect = () => {
       setDisLike(res.data);
     });
   };
-  const data = ViewProdect.map((e, i) => {
+  const data = iPost.map((e, i) => {
     return (
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col-md-9 mx-auto" key={i}>
-            <section className="p-3 mb-2 bg-dark text-white">
-              <h2 className="text-center">Product Details</h2>
-              <hr style={{ background: "silver" }}></hr>
-              <img src={e.Image} alt="" width="40" height="35" className="rounded-circle" />
-              <small className="text-white"> {e.Name}</small>
-              <hr style={{ background: "silver" }}></hr>
-              <br></br>
-
-              <div className="row justify-content-md-center  mt-0 mb-0">
-                <div className="col-md-5">
-                  <img src={e.Images_Post} className="rounded" style={{ width: "100%", height: "300px" }} alt="" />
-                </div>
-                <hr style={{ background: "silver" }}></hr>
-                <div className="col-md-7 text-white">
-                  <dl className="row text-white" style={{ margin: "10px 0px 0px ", width: "105%" }}>
-                    <dt className="col-sm-3">
-                      <i className="fa fa-shopping-cart"></i> Name :
-                    </dt>
-                    <dd className="col-sm-9">
-                      <p>{e.Name_Post}</p>
-                    </dd>
-                    <dt className="col-sm-3">
-                      <i className="fa fa-flag"></i> Country
-                    </dt>
-                    <dd className="col-sm-9">
-                      <p>{e.Country_Post}</p>
-                    </dd>
-                    <dt className="col-sm-3">
-                      <i className="fa fa-dollar"></i> Price
-                    </dt>
-                    <dd className="col-sm-9">
-                      <p className="font-weight-bold">{e.Price_Post} &#8377;</p>
-                    </dd>
-                    <dt className="col-sm-3">
-                      <i className="fa fa-clock-o"></i> Date
-                    </dt>
-                    <dd className="col-sm-9">
-                      <p>{e.Date_Post}</p>
-                    </dd>
-                    <dt className="col-sm-3">
-                      <i className="fa fa-clock-o"></i> Category
-                    </dt>
-                    <dd className="col-sm-9">
-                      <p>{e.Category_Post}</p>
-                    </dd>
-                  </dl>
-                </div>
-              </div>
-              <hr style={{ background: "silver" }}></hr>
-              <div class="bg-dark">
-                <div class="d-flex justify-content-center">
-                  <div class="like p-2 cursor">
-                    <i class="fa fa-thumbs-o-up"></i>
-                    <span class="ml-1">Like {valueLikee}</span>
-                  </div>
-                  <div class="like p-2 cursor">
-                    <i class="fa fa-thumbs-o-down"></i>
-                    <span class="ml-1">Dislike {Dislike}</span>
-                  </div>
-                  <div class="like p-2 cursor">
-                    <i class="fa fa-commenting-o"></i>
-                    <span class="ml-1">Comment {allCommentLength}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="d-flex justify-content-center">
-                <div className="like p-2 cursor">
+      <div className="row  p-3 bg-dark text-white">
+        <div className="col-md-6" key={i}>
+          <div className="col pt-3 pb-3">
+            <img src={e.Image} width="40" height="35" className="rounded-circle" alt="" />
+            <Link to={`/ProfileUser/${e.idUser}`} className="text-white" style={{ paddingLeft: "10px" }}>
+              {e.Name}
+            </Link>
+          </div>
+          <div className="col">
+            <img src={e.Images_Post} className="rounded" style={{ width: "100%", height: "300px" }} alt="" />
+          </div>
+        </div>
+        <div className="col ">
+          <div className="text-center">
+            <div className="card-header">Information</div>
+            <br></br>
+            <table className="table table-dark table-striped">
+              <tr>
+                <th scope="col">Name :</th>
+                <th scope="col">{e.Name_Post}</th>
+              </tr>
+              <tr>
+                <th scope="col">Category :</th>
+                <th scope="col">{e.Category_Post}</th>
+              </tr>
+              <tr>
+                <th scope="col">Country :</th>
+                <th scope="col">{e.Country_Post}</th>
+              </tr>
+              <tr>
+                <th scope="col">Price :</th>
+                <th scope="col">{e.Price_Post}</th>
+              </tr>
+              <tr>
+                <th scope="col">Date :</th>
+                <th scope="col">{e.Date_Post}</th>
+              </tr>
+            </table>
+          </div>
+          <div className="col">
+            <table className="table table-dark table-striped">
+              <tr>
+                <th scope="col" style={{ paddingLeft: "50px" }}>
                   <button
                     type="button"
                     className="btn btn-primary"
@@ -161,11 +126,10 @@ const Prodect = () => {
                       updateLike();
                     }}
                   >
-                    <i className="fa fa-thumbs-o-up" style={{ color: "white" }}></i>
-                    Like
+                    Like ({Likee.length}) 
                   </button>
-                </div>
-                <div className="like p-2 cursor">
+                </th>
+                <th scope="col" style={{ paddingLeft: "50px" }}>
                   <button
                     type="button"
                     className="btn btn-primary"
@@ -173,48 +137,54 @@ const Prodect = () => {
                       updateUnlike();
                     }}
                   >
-                    <i className="fa fa-thumbs-o-down" style={{ color: "white" }}></i>
-                    Dislike
+                    Dislike ({disLike.length})
                   </button>
-                </div>
-                <div className="like p-2 cursor action-collapse" data-toggle="collapse" aria-expanded="true" aria-controls="collapse-2" href="#collapse-2">
-                  <span className="ml-1">
-                    <button className="btn btn-primary">Add Cart</button>
-                  </span>
-                </div>
-              </div>
-              <hr style={{ background: "silver" }}></hr>
-              <div className="coment-bottom bg-dark p-2 px-4" key={i}>
-                <div className="d-flex flex-row add-comment-section mt-4 mb-4" style={{ width: "100%" }}>
-                  <img className="img-fluid img-responsive rounded-circle mr-2" src={Image} width="38" alt="" />
-                  <input type="text" className="form-control form-control-sm mr-2" name="comment" placeholder="Add comment" onChange={handlComment} />
-                  <button className="btn btn-primary btn-sm" type="button" style={{ height: "32px", padding: "4px 13px" }} onClick={insertComment}>
-                    Comment
-                  </button>
-                </div>
-              </div>
-
-              {vauleComment.map((e, i) => {
-                return (
-                  <div className="coment-bottom bg-dark p-2 px-4" key={i}>
-                    <div className="d-flex flex-row add-comment-section mt-4 mb-4" style={{ width: "100%" }}>
-                      <img className="img-fluid img-responsive rounded-circle mr-2" src={e.Image} width="38" alt="" />
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-0">{e.Name}</h6> <span class="date">{e.date_comment}</span>
-                      </div>
-                    </div>
-                    <p>{e.comment}</p>
-                    <hr style={{ background: "silver" }}></hr>
-                  </div>
-                );
-              })}
-            </section>
+                </th>
+                <th scope="col" style={{ paddingLeft: "50px" }}>
+                  <Link to={`/Chat/${e.idUser}`}  className="btn btn-primary">Massage</Link>
+                </th>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
     );
   });
-  return <div>{data}</div>;
+  const commentData = getComment.map((e, i) => {
+    return (
+      <div className="row p-3  bg-dark text-white">
+        <div className="col">
+          <div className="d-flex flex-row add-comment-section mt-4 mb-4" style={{ width: "100%" }}>
+            <img className="img-fluid img-responsive rounded-circle mr-2" src={e.Image} width="38" alt="" />
+            <div class="d-flex flex-column">
+              <h6 class="mb-0">{e.Name}</h6> <span class="date">{e.date_comment}</span>
+            </div>
+          </div>
+          <p>{e.comment}</p>
+          <hr style={{ background: "silver" }}></hr>
+        </div>
+      </div>
+    );
+  });
+  return (
+    <div className="container">
+      {data}
+      <div className="row p-3  bg-dark text-white">
+        <div className="col-auto ">
+          <img src={Image} width="40" height="35" className="rounded-circle" alt="" />
+        </div>
+        <div className="col ">
+          <input type="text" className="form-control" name="comment" placeholder="Add comment" onChange={handlComment} />
+        </div>
+        <div className="col-auto">
+          <button className="btn btn-primary " type="button" onClick={insertComment}>
+            Comment ({getComment.length})
+          </button>
+        </div>
+      </div>
+      {commentData}
+    </div>
+  );
 };
 
 export default Prodect;

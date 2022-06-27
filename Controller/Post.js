@@ -4,6 +4,8 @@ const validate = require("../Middlewares/AddPost");
 const express = require("express");
 const app = express();
 app.use(express.json());
+
+
 // Get All Post
 const getAllPost = (req, res) => {
   let sql = `select 
@@ -97,7 +99,7 @@ const getLike = (req, res) => {
 
       console.log(err);
     } else {
-      res.json(result.length);
+      res.json(result);
     }
   });
 };
@@ -108,7 +110,7 @@ const getDisLike = (req, res) => {
       res.json(err);
       console.log(err);
     } else {
-      res.json(result.length);
+      res.json(result);
     }
   });
 };

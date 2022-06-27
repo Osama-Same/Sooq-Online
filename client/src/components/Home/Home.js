@@ -71,7 +71,7 @@ const Home = () => {
               View Prodect
             </Link>
             <div className="price-wrap">
-              <span className="price h6">Price : {e.Price_Post}$</span> <br /> <small className="text-success">Free shipping</small>
+              <span className="price h6">Price : {e.Price_Post}$</span> <br /> 
             </div>
           </div>
         </figure>
