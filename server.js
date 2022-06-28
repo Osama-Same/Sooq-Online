@@ -23,7 +23,7 @@ app.delete("/deleteIdUser/:idUser", deleteIdUser);
 app.get("/MyAds/:idUser", MyAds);
 app.post("/register", upload.single("Image"), addUser);
 app.post("/login", login);
-app.get("/GetMassage/:idUser", getMassage);
+app.get("/GetMassage/:idUser/:idUser2", getMassage);
 app.post("/Sender/:idUser", sender);
 app.post("/Receiver/:idUser", receiver);
 

@@ -2,7 +2,9 @@ const connection = require("../Connection/connection");
 const bcrypt = require("bcrypt");
 const cloudinary = require("../Upload/cloudinary");
 const validate = require("../Middlewares/register");
-
+const express = require("express");
+const app = express();
+app.use(express.json());
 // Get All Users
 const getAllUsers = (req, res) => {
   let sql = "select * from users";
@@ -180,32 +182,29 @@ const login = (req, res) => {
 
 const sender = (req, res) => {
   let idUser = req.params.idUser;
-  const idUser2 = req.body.idUser2;
+  let idUser2 = req.body.idUser2;
   let sql = `select * from users where idUser = '${idUser}'`;
   connection.query(sql, (err, result) => {
     if (err) {
       res.json({ err: "error" });
     }
     if (result) {
-      let sql = `select * from massage where idUser2 = ${idUser2}`;
+      let sql = `select * from massage where idUser2 = '${idUser2}'`;
       connection.query(sql, (err, result) => {
         if (err) {
           res.json({ err: "error" });
-        }
-        if (result) {
-          if (result[0].idUser2) {
-            let sender = req.body.sender;
-            // let receiver = req.body.receiver;
-            let sql1 = `insert into massage (idUser,idUser2,sender) values
+        } else if (result) {
+          let sender = req.body.sender;
+          // let receiver = req.body.receiver;
+          let sql1 = `insert into massage (idUser,idUser2,sender) values
                     ('${idUser}','${idUser2}','${sender}')`;
-            connection.query(sql1, (err, result) => {
-              if (err) {
-                res.json(err);
-              } else {
-                res.json(result);
-              }
-            });
-          }
+          connection.query(sql1, (err, result) => {
+            if (err) {
+              res.json(err);
+            } else {
+              res.json(result);
+            }
+          });
         }
       });
     }
@@ -223,25 +222,22 @@ const receiver = (req, res) => {
       res.json({ err: "error" });
     }
     if (result) {
-      let sql = `select * from massage where idUser2 = ${idUser2}`;
+      let sql = `select * from massage where idUser2 = '${idUser2}'`;
       connection.query(sql, (err, result) => {
         if (err) {
           res.json({ err: "error" });
-        }
-        if (result) {
-          if (result[0].idUser2) {
-            //let sender = req.body.sender;
-            let receiver = req.body.receiver;
-            let sql1 = `insert into massage (idUser,idUser2,receiver) values
+        } else if (result) {
+          //let sender = req.body.sender;
+          let receiver = req.body.receiver;
+          let sql1 = `insert into massage (idUser,idUser2,receiver) values
                     ('${idUser}','${idUser2}','${receiver}')`;
-            connection.query(sql1, (err, result) => {
-              if (err) {
-                res.json(err);
-              } else {
-                res.json(result);
-              }
-            });
-          }
+          connection.query(sql1, (err, result) => {
+            if (err) {
+              res.json(err);
+            } else {
+              res.json(result);
+            }
+          });
         }
       });
     }
@@ -251,26 +247,15 @@ const receiver = (req, res) => {
 // chat Get receiver
 const getMassage = (req, res) => {
   let idUser = req.params.idUser;
-  const idUser2 = req.body.idUser2;
-  let sql = `select * from users where idUser = '${idUser}'`;
+  let idUser2 = req.params.idUser2;
+  let sql = `select * from massage where idUser2 ='${idUser2}' and '${idUser}'`;
   connection.query(sql, (err, result) => {
     if (err) {
-      res.json({ err: "error" });
-      console.log(err)
-    }else
-    if (result) {
-      if (result[0].idUser) {
-        let sql = `select * from massage where idUser2 = ${idUser2}`;
-        connection.query(sql, (err, result) => {
-          if (err) {
-            res.json({ err: "error" });
-            console.log(err)
-          } else {
-            res.json(result);
-          }
-        });
-      }
+      res.json(err);
+      console.log(err);
+    } else {
+      res.json(result);
     }
   });
 };
-module.exports = { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser, login, sender, receiver ,getMassage};
+module.exports = { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser, login, sender, receiver, getMassage };

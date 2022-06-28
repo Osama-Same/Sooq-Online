@@ -60,7 +60,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item dropdown">
-                <Link className="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <Link to={"#"}className="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <img src={users[0].Image} alt={users[0].Email} width="30" height="25" className="rounded-circle" />
                   <small style={{ paddingLeft: "5px" }}> {users[0].Email}</small>
                 </Link>
@@ -76,12 +76,7 @@ const Navbar = () => {
                       <span className="fa fa-adjust" style={{ color: "black" }}></span> My Ads
                     </Link>
                   </li>
-                  <li>
-                    <Link to={`/Follow/${users[0].idUser}`} className="dropdown-item">
-                      <span className="fa fa-user-friends" style={{ color: "black" }}></span> Follow
-                    </Link>
-                  </li>
-
+            
                   <li>
                     <button className="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">
                       <span className="fa fa-solid fa-trash" style={{ color: "black" }}></span> Delete Account
