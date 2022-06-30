@@ -41,13 +41,18 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul className="nav navbar-nav navbar-left">
               <li>
-                <Link className="nav-link" aria-current="page" to={`/Home/${users[0].idUser}`}>
+                <Link className="nav-link" style={{ color: "white" }} aria-current="page" to={`/Home/${users[0].idUser}`}>
                   <span className="fa fa-fw fa-home" style={{ color: "white" }}></span> Home
                 </Link>
               </li>
               <li>
-                <Link className="nav-link" aria-current="page" to={`/Category`}>
-                  <span className="	fa fa-address-book" style={{ color: "white" }}></span> Category
+                <Link className="nav-link" style={{ color: "white" }} aria-current="page" to={`/About/${users[0].idUser}`}>
+                  <span className="fa fa-address-book" style={{ color: "white" }}></span> About Us
+                </Link>
+              </li>
+              <li>
+                <Link className="nav-link" aria-current="page" style={{ color: "white" }} to={`/Category`}>
+                  <span className="	fa fa-list-alt" style={{ color: "white" }}></span> Category
                 </Link>
               </li>
               

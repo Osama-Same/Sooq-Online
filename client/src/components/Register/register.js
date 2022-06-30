@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link ,useHistory} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 const Register = () => {
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
@@ -49,13 +49,13 @@ const Register = () => {
     axios
       .post("register", fromData)
       .then((res) => {
-        if (res.data) {
-          setErrors(res.data);
-        } else if (res.data.err) {
+        if (res.data.err) {
           setErrors(res.data.err);
-        } else {
+        } else if (res.data.result) {
           setErrors(res.data.result);
-          history.push(`/`);
+          history.push("/");
+        } else {
+          setErrors(res.data);
         }
       })
       .catch((err) => {
@@ -65,7 +65,10 @@ const Register = () => {
   return (
     <div className="pt-3 pb-3">
       <div className="text-center text-white pt-3 pb-3">
-        <h5 className="text-capitalize fst-italic" style={{ paddingTop: "10px" }}>
+        <h5
+          className="text-capitalize fst-italic"
+          style={{ paddingTop: "10px" }}
+        >
           Sooq Online
         </h5>
       </div>
@@ -79,28 +82,76 @@ const Register = () => {
             </div>
             <div className="pt-3 pb-3">
               <label> Name </label>
-              {errors.Name && <label style={{ color: "red", marginLeft: "30%" }}>{errors.Name}</label>}
-              <input type="text" className="form-control" name="Name" placeholder="Name ..." onChange={handleFirstName} />
+              {errors.Name && (
+                <label style={{ color: "red", marginLeft: "30%" }}>
+                  {errors.Name}
+                </label>
+              )}
+              <input
+                type="text"
+                className="form-control"
+                name="Name"
+                placeholder="Name ..."
+                onChange={handleFirstName}
+              />
             </div>
             <div className="pt-3 pb-3">
               <label> Email </label>
-              {errors.Email && <label style={{ color: "red", marginLeft: "30%" }}>{errors.Email}</label>}
-              <input type="email" className="form-control" name="Email" placeholder="Email ..." onChange={handleEmail} />
+              {errors.Email && (
+                <label style={{ color: "red", marginLeft: "30%" }}>
+                  {errors.Email}
+                </label>
+              )}
+              <input
+                type="email"
+                className="form-control"
+                name="Email"
+                placeholder="Email ..."
+                onChange={handleEmail}
+              />
             </div>
             <div className="pt-3 pb-3">
               <label>Password</label>
-              {errors.Passowrd && <label style={{ color: "red", marginLeft: "15%" }}>{errors.Passowrd}</label>}
-              <input type="password" className="form-control" name="Passowrd" placeholder="Password..." onChange={handlePassowrd} />
+              {errors.Passowrd && (
+                <label style={{ color: "red", marginLeft: "15%" }}>
+                  {errors.Passowrd}
+                </label>
+              )}
+              <input
+                type="password"
+                className="form-control"
+                name="Passowrd"
+                placeholder="Password..."
+                onChange={handlePassowrd}
+              />
             </div>
             <div className="pt-3 pb-3">
               <label>Phone</label>
-              {errors.Phone && <label style={{ color: "red", marginLeft: "15%" }}>{errors.Phone}</label>}
-              <input type="tel" className="form-control" name="Phone" placeholder="Phone..." onChange={handlePhone} />
+              {errors.Phone && (
+                <label style={{ color: "red", marginLeft: "15%" }}>
+                  {errors.Phone}
+                </label>
+              )}
+              <input
+                type="tel"
+                className="form-control"
+                name="Phone"
+                placeholder="Phone..."
+                onChange={handlePhone}
+              />
             </div>
             <div className="pt-3 pb-3">
               <label>Country</label>
-              {errors.Country && <label style={{ color: "red", marginLeft: "15%" }}>{errors.Country}</label>}
-              <select className="form-control" name="Country"  onChange={handleCountry}>
+              {errors.Country && (
+                <label style={{ color: "red", marginLeft: "15%" }}>
+                  {errors.Country}
+                </label>
+              )}
+              <select
+                className="form-control"
+                name="Country"
+                onChange={handleCountry}
+              >
                 <option name="Country" value="">
                   Open this select Country
                 </option>
@@ -121,10 +172,21 @@ const Register = () => {
             </div>
             <div className="pt-3 pb-3">
               <label>Image</label>
-              <input type="file" className="form-control" name="Image"  accept=".jpg,.png,.svg" onChange={handleImage} />
+              <input
+                type="file"
+                className="form-control"
+                name="Image"
+                accept=".jpg,.png,.svg"
+                onChange={handleImage}
+              />
             </div>
             <div className="text-center pt-3 pb-3">
-              <button type="submit" className="btn btn-primary btn-lg" style={{ width: "100%" }} onClick={save}>
+              <button
+                type="submit"
+                className="btn btn-primary btn-lg"
+                style={{ width: "100%" }}
+                onClick={save}
+              >
                 Submit
               </button>
             </div>
@@ -136,8 +198,11 @@ const Register = () => {
                 </Link>
               </p>
             </div>
-            <div className="form-group" style={{ color: "red", textAlign: "center" }}>
-            {errors.err && <p>{errors.err}</p>}
+            <div
+              className="form-group"
+              style={{ color: "red", textAlign: "center" }}
+            >
+              {errors.err && <p>{errors.err}</p>}
             </div>
           </div>
         </div>

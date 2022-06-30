@@ -54,13 +54,13 @@ const AddPost = () => {
     axios
       .post(`AddPost/${id}`, fromData, config)
       .then((res) => {
-        console.log(res.data)
-        if (res.data) {
-          setErrors(res.data);
-        } else if (res.data.err) {
-          setErrors(res.data.err);
-        }else if(res.data.result){
-          history.push(`/Home/${id}`);
+        if (res.data.err) {
+          setErrors(res.data.err)
+        } else if (res.data.result) {
+          setErrors(res.data.result)
+          history.push(`/Home/${id}`)
+        } else {
+          setErrors(res.data)
         }
       })
       .catch((err) => {
@@ -93,7 +93,7 @@ const AddPost = () => {
                 <option value="Computer">Computer</option>
                 <option value="Laptop">Laptop</option>
                 <option value="Playstation">Playstation</option>
-                <option value="Baby Supplies">Baby Supplies</option>
+                <option value="Job">Job</option>
                 <option value="Clothes">Clothes</option>
               </select>
             </div>

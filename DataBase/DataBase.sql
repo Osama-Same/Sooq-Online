@@ -40,7 +40,7 @@ CREATE TABLE
         idCategory INT AUTO_INCREMENT NOT NULL,
         name_Category VARCHAR (100),
         Images_Category VARCHAR(255),
-        PRIMARY KEY (idCategory),
+        PRIMARY KEY (idCategory)
     );
 
 CREATE TABLE

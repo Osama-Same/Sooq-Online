@@ -14,12 +14,13 @@ import ViewCategory from "./components/View Category/ViewCategory";
 import ProfileUser from "./components/Profile User/ProfileUser";
 import UserMyAds from "./components/Profile User/UserMyAds";
 import Chat from "./components/Chat/Chat";
+import About from "./components/About/About";
 // functional component
 const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/register">
+        <Route exact path="/Register">
           <Register />
         </Route>
         <Route exact path="/">
@@ -30,6 +31,10 @@ const App = () => {
         <Route exact path="/Home/:idUser">
           <Navbar />
           <Home />
+        </Route>
+        <Route exact path="/About/:idUser">
+          <Navbar />
+          <About />
         </Route>
         <Route exact path="/AddPost/:idUser">
           <Navbar />
