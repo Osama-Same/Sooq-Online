@@ -11,7 +11,7 @@ require("dotenv").config();
   host: "localhost",
   user: "root",
   password: "0000",
-  database: "mysql1",
+  database: "SooqOnline",
 });  
 
 
