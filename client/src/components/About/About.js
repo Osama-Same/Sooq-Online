@@ -1,16 +1,23 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import Header from "../Navbar/Header";
 const About = () => {
+  const id = localStorage.getItem("idUser");
   return (
     <div>
-      <div className="container">
+      <Link to={`/Home/${id}`}>
+        <Header />{" "}
+      </Link>
+      <div className="container" style={{marginTop:"60px"}}>
         <h2 className="text-center text-white">About Us</h2>
-        <p className=" text-white-50" style={{ textAlign: "center" }}>
+        <p
+          className=" text-white-50"
+          style={{ textAlign: "center", paddingBottom: "50px" }}
+        >
           A site specialized in buying and selling that provides you with many
           important services
         </p>
-        <br></br>
-        <br></br>
+
         <div className="row" style={{ paddingBottom: "50px" }}>
           <div className="col-md-6" style={{ paddingBottom: "50px" }}>
             <h1 className="text-white">Who Are We?</h1>
@@ -75,7 +82,7 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className="col">
+          <div className="col-md-4">
             <div class="card">
               <img
                 src="https://inmobiliare.com/himalaya/wp-content/uploads/2020/12/Comercio_electronico.jpg"

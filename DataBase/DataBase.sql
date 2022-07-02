@@ -11,7 +11,7 @@ DROP TABLE Post;
 CREATE TABLE
     users (
         idUser INT AUTO_INCREMENT NOT NULL,
-        NAME VARCHAR(255) NOT NULL,
+        Name VARCHAR(255) NOT NULL,
         Email VARCHAR(255) NOT NULL,
         Passowrd VARCHAR(255) NOT NULL,
         Phone VARCHAR(255) NOT NULL,

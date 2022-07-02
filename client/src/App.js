@@ -7,14 +7,17 @@ import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import AddPost from "./components/Add Post/AddPost";
 import ViewProdect from "./components/View Prodect/Prodect";
-import Profile from "./components/Profile/Profile"
-import MyAds from "./components/Profile/MyAds"
-import Category from "./components/Category/Category"
+import Profile from "./components/Profile/Profile";
+import MyAds from "./components/Profile/MyAds";
+import Category from "./components/Category/Category";
 import ViewCategory from "./components/View Category/ViewCategory";
 import ProfileUser from "./components/Profile User/ProfileUser";
 import UserMyAds from "./components/Profile User/UserMyAds";
 import Chat from "./components/Chat/Chat";
 import About from "./components/About/About";
+import Footer from "./components/Footer/Footer";
+import Contact from "./components/Contact/Contact";
+
 // functional component
 const App = () => {
   return (
@@ -31,10 +34,17 @@ const App = () => {
         <Route exact path="/Home/:idUser">
           <Navbar />
           <Home />
+          <Footer />
         </Route>
         <Route exact path="/About/:idUser">
           <Navbar />
           <About />
+          <Footer />
+        </Route>
+        <Route exact path="/Contact/:idUser">
+          <Navbar />
+          <Contact />
+          <Footer/>
         </Route>
         <Route exact path="/AddPost/:idUser">
           <Navbar />
@@ -60,7 +70,7 @@ const App = () => {
           <Navbar />
           <ViewCategory />
         </Route>
-      
+
         <Route exact path="/ProfileUser/:idUser">
           <Navbar />
           <ProfileUser />
@@ -73,7 +83,6 @@ const App = () => {
           <Navbar />
           <Chat />
         </Route>
-      
       </Switch>
     </Router>
   );

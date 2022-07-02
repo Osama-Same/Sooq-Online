@@ -51,6 +51,11 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
+                <Link className="nav-link" style={{ color: "white" }} aria-current="page" to={`/Contact/${users[0].idUser}`}>
+                  <span className="fa fa-address-book" style={{ color: "white" }}></span> Contact Us
+                </Link>
+              </li>
+              <li>
                 <Link className="nav-link" aria-current="page" style={{ color: "white" }} to={`/Category`}>
                   <span className="	fa fa-list-alt" style={{ color: "white" }}></span> Category
                 </Link>

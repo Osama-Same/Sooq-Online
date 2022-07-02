@@ -41,7 +41,7 @@ const Home = () => {
             </Link>
           </span>
           <Link  className="img-wrap" data-abc="true">
-            <img src={e.Images_Post} alt="" />
+            <img src={e.Images_Post} alt="" width={"350"}/>
           </Link>
           <div className="bottom-wrap">
             <ul className="float-right" style={{ listStyleType: "none" }}>
@@ -83,7 +83,7 @@ const Home = () => {
     <div>
       <Header findSearch={findSearch} handleSearchChange={handleSearchChange} search={search}   />
 
-      <div className="container">
+      <div className="container" style={{marginTop:"50px"}}>
         <div className="row">{data}</div>
       </div>
     </div>
