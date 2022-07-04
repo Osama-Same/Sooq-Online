@@ -156,8 +156,8 @@ const Prodect = () => {
         <div className="col">
           <div className="d-flex flex-row add-comment-section mt-4 mb-4" style={{ width: "100%" }}>
             <img className="img-fluid img-responsive rounded-circle mr-2" src={e.Image} width="38" alt="" />
-            <div class="d-flex flex-column">
-              <h6 class="mb-0">{e.Name}</h6> <span class="date">{e.date_comment}</span>
+            <div className="d-flex flex-column">
+              <h6 className="mb-0">{e.Name}</h6> <span class="date">{e.date_comment}</span>
             </div>
           </div>
           <p>{e.comment}</p>

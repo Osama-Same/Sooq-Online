@@ -17,6 +17,19 @@ const getAllUsers = (req, res) => {
     }
   });
 };
+// Get All Users Not user
+const getAllNotUser = (req, res) => {
+  let id  = req.params.idUser
+  let sql = `select * from users where not idUser ='${id}'`;
+  connection.query(sql, (err, result) => {
+    if (err) {
+      res.json({ err: err });
+    }else{
+      res.json(result)
+    }
+    
+  });
+};
 // Get id user
 const getIdUser = (req, res) => {
   const idUser = req.params.idUser;
@@ -258,4 +271,4 @@ const getMassage = (req, res) => {
     }
   });
 };
-module.exports = { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser, login, sender, receiver, getMassage };
+module.exports = { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser, login,getAllNotUser, sender, receiver, getMassage };

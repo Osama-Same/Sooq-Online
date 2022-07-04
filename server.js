@@ -15,8 +15,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Users
 const { upload } = require("./Upload/upload");
-const { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser, login ,sender,receiver, getMassage} = require("./Controller/Users");
+const { getAllUsers, getIdUser, updateIdUser, deleteIdUser, MyAds, addUser, login,getAllNotUser ,sender,receiver, getMassage} = require("./Controller/Users");
 app.get("/", getAllUsers);
+app.get("/AllUser/:idUser", getAllNotUser);
 app.get("/getId/:idUser", getIdUser);
 app.put("/UpdateIdUser/:idUser", upload.single("Image"), updateIdUser);
 app.delete("/deleteIdUser/:idUser", deleteIdUser);
@@ -48,8 +49,7 @@ const { getAllComment, addComment } = require("./Controller/Comment");
 app.get("/GetComment/:idPost", getAllComment);
 app.post("/insertComment/:idPost", addComment);
 
-
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static(path.resolve(__dirname, "\\client\\build")));
 
 const PORT = process.env.PORT || 5000;
 
