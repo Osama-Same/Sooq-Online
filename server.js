@@ -49,7 +49,7 @@ const { getAllComment, addComment } = require("./Controller/Comment");
 app.get("/GetComment/:idPost", getAllComment);
 app.post("/insertComment/:idPost", addComment);
 
-app.use(express.static(path.resolve(__dirname, "\\client\\build")));
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 const PORT = process.env.PORT || 5000;
 
