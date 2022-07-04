@@ -2,7 +2,7 @@ import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import "./App.css";
 import Login from "./components/Login/Login";
-import Register from "./components/Register/Register";
+import Register from "./components/Register/register"
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import AddPost from "./components/Add Post/AddPost";
@@ -17,6 +17,7 @@ import Chat from "./components/Chat/Chat";
 import About from "./components/About/About";
 import Footer from "./components/Footer/Footer";
 import Contact from "./components/Contact/Contact";
+
 
 // functional component
 const App = () => {
